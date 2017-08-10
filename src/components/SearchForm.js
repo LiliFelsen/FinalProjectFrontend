@@ -16,8 +16,7 @@ class SearchForm extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault()
     geocodeByAddress(this.state.address)
-      .then(results => console.log(results[0]))
-      .then(latLng => console.log('Success', latLng))
+      .then(results => getLatLng(results[0]))
       .catch(error => console.log('Error', error))
   }
 

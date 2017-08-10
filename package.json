@@ -8,10 +8,13 @@
     "react-facebook-login": "^3.6.2",
     "react-google-autocomplete": "^1.0.13",
     "react-places-autocomplete": "^5.4.2",
-    "react-scripts": "1.0.11"
+    "react-router-dom": "^4.1.2",
+    "react-scripts": "1.0.11",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.71.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3333 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
