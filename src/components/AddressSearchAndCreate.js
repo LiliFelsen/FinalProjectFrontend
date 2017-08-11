@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Input, Button, Modal, Icon, Dropdown, Form, Radio } from 'semantic-ui-react'
+import { Input, Button, Modal, Icon, Dropdown, Form, Radio, Grid } from 'semantic-ui-react'
 import Autocomplete from 'react-google-autocomplete'
 
 class AddressSearchAndCreate extends Component {
 
   state = {
-      currentRestaurant: [],
+      currentPlaceId: '',
+      currentRestaurant: {},
       existingTags: [],
       selectedTagsId: [],
       newTags: [],
@@ -31,12 +32,16 @@ class AddressSearchAndCreate extends Component {
   fetchRestaurant = () => {
     fetch('http://localhost:3000/api/v1/restaurants')
       .then(resp => resp.json())
-      .then(restaurants => this.setState({
-        currentRestaurant: restaurants[restaurants.length-1]
-      }))
+      .then(restaurants => {
+        this.setState({
+          currentRestaurant: restaurants.filter(r => r.placeId === this.state.currentPlaceId)[0]
+        })
+      }
+    )
   }
 
   handleSelectedRestaurant = (place) => {
+    this.setState({ currentPlaceId: place.place_id })
     let restaurant = {
       placeId: place.place_id,
       name: place.name,
@@ -149,18 +154,20 @@ class AddressSearchAndCreate extends Component {
     const tagOptions = this.state.existingTags.map(tag => {
       return {key: tag.id, text: tag.name, value: tag.id}
     })
-
+      
     return(
       <div>
-          <Autocomplete
-            style={{width: '40%', padding: '0.5em 0.5em'}}
-            placeholder='Search new restaurant'
-            onPlaceSelected={this.handleSelectedRestaurant}
-            types={['establishment']}
-            componentRestrictions={{country: 'us'}}
-          />
+          <Input>
+            <Autocomplete
+              // style={{width: '100%'}}
+              placeholder='Search new restaurant'
+              onPlaceSelected={this.handleSelectedRestaurant}
+              types={['establishment']}
+              componentRestrictions={{country: 'us'}}
+            />
+          </Input>
           <Modal
-            trigger={<Button onClick={this.handleOpen}><Icon name='plus' /></Button>}
+            trigger={<Button onClick={this.handleOpen} icon='plus' />}
             open={this.state.modalOpen}
             onClose={this.handleClose}
           >
@@ -187,9 +194,8 @@ class AddressSearchAndCreate extends Component {
                   </div>
                   : null
                 }
-
               </Modal.Description>
-          </Modal>
+            </Modal>
       </div>
     )
   }

@@ -8,11 +8,19 @@ class UserNavbar extends Component {
 
   render(){
     return(
-      <div>
-          <AddressSearchAndCreate />
-          <FilterShow />
-          <Input icon='search' placeholder='Browse your places...' />
-      </div>
+      <Grid>
+        <Grid.Row columns={3}>
+          <Grid.Column width={6} textAlign='right' >
+            <AddressSearchAndCreate />
+          </Grid.Column>
+          <Grid.Column width={4} textAlign='center' >
+            <FilterShow />
+          </Grid.Column>
+          <Grid.Column width={6} textAlign='left' >
+            <Input icon='search' placeholder='Browse your places...' />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 
