@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Input, Button, Modal } from 'semantic-ui-react'
-import AddressSearch from './AddressSearch'
+import { Input, Button, Modal, Grid } from 'semantic-ui-react'
+import AddressSearchAndCreate from './AddressSearchAndCreate'
 import FilterShow from './FilterShow'
 
 class UserNavbar extends Component {
@@ -9,9 +9,9 @@ class UserNavbar extends Component {
   render(){
     return(
       <div>
-        <AddressSearch />
-        <FilterShow />
-        <Input icon='search' placeholder='Browse your places...' />
+          <AddressSearchAndCreate />
+          <FilterShow />
+          <Input icon='search' placeholder='Browse your places...' />
       </div>
     )
   }
