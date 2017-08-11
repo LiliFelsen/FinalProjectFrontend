@@ -5,18 +5,13 @@ import FilterShow from './FilterShow'
 
 class UserNavbar extends Component {
 
+
   render(){
     return(
       <div>
-        <Modal trigger={<Button content='Add new restaurant' icon='plus' labelPosition='left' />}>
-          <Modal.Header>Look for a restaurant</Modal.Header>
-            <Modal.Description>
-              <AddressSearch />
-            </Modal.Description>
-        </Modal>
-
+        <AddressSearch />
         <FilterShow />
-        <Input icon='search' placeholder='Search by name' />
+        <Input icon='search' placeholder='Browse your places...' />
       </div>
     )
   }
