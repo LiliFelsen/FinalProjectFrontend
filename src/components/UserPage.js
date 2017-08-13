@@ -8,17 +8,18 @@ import FriendList from './FriendList'
 class UserPage extends Component {
 
   state = {
-    currentUser: ''
+    currentUserId: ''
   }
 
   componentDidMount = () => {
     fetch('http://localhost:3000/api/v1/users/1')
       .then(resp => resp.json())
-      .then(currentUser => this.setState({ currentUser }))
+      // .then(currentUser => {debugger})
+      .then(currentUser => this.setState({ currentUserId: currentUser.id }))
   }
 
   render(){
-    console.log('current user is:', this.state.currentUser);
+    // console.log('current user id is:', this.state.currentUserId);
     return(
       <div>
         <UserNavbar />
@@ -28,7 +29,7 @@ class UserPage extends Component {
               <FiltersTags />
             </Grid.Column>
             <Grid.Column width={10}>
-              <UserRestaurants />
+              <UserRestaurants currentUserId={this.state.currentUserId}/>
             </Grid.Column>
             <Grid.Column width={3}>
               <FriendList />
