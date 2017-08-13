@@ -65,7 +65,12 @@ class AddressSearchAndCreate extends Component {
   }
 
   handleSelectTag = (event, data) => {
-    this.setState({ selectedTagsId: data.value })
+    if (this.state.selectedTagsId.length > 5) {
+      alert('You may only select 5')
+    }
+    else {
+      this.setState({ selectedTagsId: data.value })
+    }
   }
 
   handleTagInput = (event) => {
@@ -188,7 +193,7 @@ class AddressSearchAndCreate extends Component {
                     <ul>{this.state.newTags.map(tag => <li>{tag}</li>)}</ul>
                     <Form onSubmit={this.handleNewTag}>
                       <Form.Field id='tag' placeholder='New tag name' control={Input} onChange={this.handleTagInput} />
-                      <Button type='submit'><Icon name='plus' /></Button>
+                      <Button type='submit' floated='right'><Icon name='plus' /></Button>
                     </Form>
                     <br/>
                     <Button onClick={this.handleSaveRestaurant}>Save</Button>

@@ -4,12 +4,12 @@ import RestaurantCard from './RestaurantCard'
 
 class RestaurantList extends Component {
   render(){
-    console.log(this.props.restaurantsDetails);
+    // console.log(this.props.restaurantsDetails);
     return(
       <div>
         <Card.Group>
           {this.props.restaurantsDetails.map(rest =>
-            <RestaurantCard restaurant={rest} />
+            <RestaurantCard key={rest.id} restaurant={rest} />
           )}
         </Card.Group>
       </div>

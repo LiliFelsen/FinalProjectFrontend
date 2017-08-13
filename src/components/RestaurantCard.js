@@ -4,6 +4,7 @@ import { Card } from 'semantic-ui-react'
 
 const RestaurantCard = ({ restaurant }) => {
   return (
+    <Link to={`/my_places/${restaurant.id}`}>
     <Card key={restaurant.id}>
       <Card.Content>
         <Card.Header>
@@ -16,6 +17,7 @@ const RestaurantCard = ({ restaurant }) => {
         </Card.Description>
       </Card.Content>
     </Card>
+    </Link>
   )
 }
 
