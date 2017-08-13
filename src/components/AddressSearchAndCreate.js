@@ -154,7 +154,7 @@ class AddressSearchAndCreate extends Component {
     const tagOptions = this.state.existingTags.map(tag => {
       return {key: tag.id, text: tag.name, value: tag.id}
     })
-      
+
     return(
       <div>
           <Input>
