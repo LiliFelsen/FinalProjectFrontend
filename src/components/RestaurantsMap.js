@@ -3,28 +3,30 @@ import GoogleMapReact from 'google-map-react'
 import { Container } from 'semantic-ui-react'
 import RestaurantMapPoint from './RestaurantMapPoint'
 
-const RestaurantPagemap = ({ text }) => <div>{text}</div>
+const Restaurantsmap = ({ text }) => <div>{text}</div>
 
-class RestaurantPageMap extends Component {
-
+class RestaurantsMap extends Component {
   render(){
     return(
-      <Container style={{ width: '100%', height: '390px' }}>
+      <Container style={{ width: '100%', height: '500px' }}>
         <GoogleMapReact
           center={{lat: 40.7664772, lng: -73.9759242}}
           defaultZoom={12}
         >
+
+          {this.props.restaurantsDetails.map(rest =>
             <RestaurantMapPoint
-              lat={this.props.restaurant.lat}
-              lng={this.props.restaurant.lng}
-              text={this.props.restaurant.name}
-              linkTo={`/my_places/${this.props.restaurant.id}`}
+              lat={rest.lat}
+              lng={rest.lng}
+              text={rest.name}
+              linkTo={`/my_places/${rest.id}`}
               icon='map pin'
             />
+          )}
         </GoogleMapReact>
       </Container>
     )
   }
 }
 
-export default RestaurantPageMap
+export default RestaurantsMap

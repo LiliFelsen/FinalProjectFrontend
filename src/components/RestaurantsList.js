@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Card } from 'semantic-ui-react'
 import RestaurantCard from './RestaurantCard'
 
-class RestaurantList extends Component {
+class RestaurantsList extends Component {
   render(){
     // console.log(this.props.restaurantsDetails);
     return(
@@ -17,4 +17,4 @@ class RestaurantList extends Component {
   }
 }
 
-export default RestaurantList
+export default RestaurantsList

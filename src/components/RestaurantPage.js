@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Grid, Button, Feed } from 'semantic-ui-react'
 import RestaurantPageMap from './RestaurantPageMap'
 import RestaurantPageReviews from './RestaurantPageReviews'
@@ -65,11 +66,14 @@ class RestaurantPage extends Component {
   }
 
   render(){
-    // console.log('current restaurant reviews:', this.state.restaurantReviews);
-    // console.log('current restaurant id:', this.state.currentRestaurant.id);
     return(
       <div className='restaurant_page'>
         <Grid container divided='vertically'>
+          <Grid.Row>
+            <Grid.Column verticalAlign='middle'>
+              <Link to='/my_places'><Button content='Back to all my places'/></Link>
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Row stretched columns={2} verticalAlign='middle'>
             <Grid.Column>
               <RestaurantPageMap restaurant={this.state.currentRestaurant} />

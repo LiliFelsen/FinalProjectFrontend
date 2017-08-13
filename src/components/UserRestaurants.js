@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import RestaurantMap from './RestaurantMap'
-import RestaurantList from './RestaurantList'
+import RestaurantsMap from './RestaurantsMap'
+import RestaurantsList from './RestaurantsList'
 
 class UserRestaurants extends Component {
 
@@ -34,8 +34,8 @@ class UserRestaurants extends Component {
   render(){
     return(
       <div>
-        <RestaurantMap restaurantsDetails={this.state.restaurantsDetails} />
-        <RestaurantList restaurantsDetails={this.state.restaurantsDetails} />
+        <RestaurantsMap restaurantsDetails={this.state.restaurantsDetails} />
+        <RestaurantsList restaurantsDetails={this.state.restaurantsDetails} />
       </div>
     )
   }
