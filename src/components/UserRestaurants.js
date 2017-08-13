@@ -32,9 +32,6 @@ class UserRestaurants extends Component {
   }
 
   render(){
-    // console.log('current user id:', this.props.currentUserId);
-    // console.log('current user restaurants:', this.state.userRestaurants);
-    // console.log('current restaurants details:', this.state.restaurantsDetails);
     return(
       <div>
         <RestaurantMap restaurantsDetails={this.state.restaurantsDetails} />
