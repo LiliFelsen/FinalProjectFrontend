@@ -4,6 +4,7 @@ import UserNavbar from './UserNavbar'
 import UserRestaurants from './UserRestaurants'
 import FiltersTags from './FiltersTags'
 import FriendList from './FriendList'
+import TestAutosuggest from './TestAutosuggest'
 
 class UserPage extends Component {
 
@@ -11,7 +12,8 @@ class UserPage extends Component {
     currentUserId: '',
     userRestaurants: [],
     restaurantsDetails: [],
-    mapVisible: true
+    mapVisible: true,
+    searchTerm: ''
   }
 
   fetchUserRestaurants = () => {
@@ -49,11 +51,18 @@ class UserPage extends Component {
     })
   }
 
+  handleSearch = (event) => {
+    this.setState({ searchTerm: event.target.value })
+  }
+
   render(){
     return(
       <div>
         <UserNavbar handleShow={this.handleShow}
-          fetchRestaurants={this.fetchUserRestaurants} />
+          fetchRestaurants={this.fetchUserRestaurants}
+          restaurantsDetails={this.state.restaurantsDetails}
+          handleSearch={this.handleSearch}
+        />
         <Grid>
           <Grid.Row>
             <Grid.Column width={3}>
@@ -63,6 +72,7 @@ class UserPage extends Component {
               <UserRestaurants currentUserId={this.state.currentUserId}
                 mapVisible={this.state.mapVisible}
                 restaurantsDetails={this.state.restaurantsDetails}
+                searchTerm={this.state.searchTerm}
               />
             </Grid.Column>
             <Grid.Column width={3}>

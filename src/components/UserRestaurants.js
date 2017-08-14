@@ -1,48 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import RestaurantsMap from './RestaurantsMap'
 import RestaurantsList from './RestaurantsList'
 
-class UserRestaurants extends Component {
+const UserRestaurants = (props) => {
 
-  // state = {
-  //   userRestaurants: [],
-  //   restaurantsDetails: []
-  // }
-  //
-  // componentDidMount = () => {
-  //   fetch('http://localhost:3000/api/v1/user_restaurants')
-  //     .then(resp => resp.json())
-  //     .then(restaurants => this.setState({
-  //       userRestaurants: restaurants.filter(r => r.user_id === 1)
-  //     }))
-  //     .then(() => this.fetchRestaurant())
-  // // TODO: make sure this.props.currentUserId works to filter userRestaurants
-  // }
-  //
-  // fetchRestaurant = () => {
-  //   fetch('http://localhost:3000/api/v1/restaurants')
-  //     .then(resp => resp.json())
-  //     .then(restaurants => {
-  //       this.setState({
-  //         restaurantsDetails: this.state.userRestaurants.map(rest =>
-  //         restaurants.filter(r => r.id === rest.restaurant_id)[0])
-  //       })
-  //     }
-  //   )
-  // }
+    const filteredRestaurants = props.restaurantsDetails.filter(rest => (
+      rest.name.toLowerCase().includes(props.searchTerm.toLowerCase())
+    ))
 
-  render(){
     return(
       <div>
-        {this.props.mapVisible ?
-          <RestaurantsMap restaurantsDetails={this.props.restaurantsDetails} /> :
-          <RestaurantsList restaurantsDetails={this.props.restaurantsDetails} />
+        {props.mapVisible ?
+          <RestaurantsMap restaurantsDetails={filteredRestaurants} /> :
+          <RestaurantsList restaurantsDetails={filteredRestaurants} />
         }
 
       </div>
     )
   }
-
-}
 
 export default UserRestaurants

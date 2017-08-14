@@ -5,7 +5,6 @@ import FilterShow from './FilterShow'
 
 class UserNavbar extends Component {
 
-
   render(){
     return(
       <Grid>
@@ -17,7 +16,7 @@ class UserNavbar extends Component {
             <FilterShow handleShow={this.props.handleShow} />
           </Grid.Column>
           <Grid.Column width={6} textAlign='left' >
-            <Input icon='search' placeholder='Browse your places...' />
+            <Input icon='search' placeholder='Browse your places...' onChange={this.props.handleSearch} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
