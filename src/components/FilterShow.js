@@ -5,9 +5,9 @@ class FilterShow extends Component {
   render(){
     return(
       <Button.Group>
-        <Button>Map</Button>
+        <Button onClick={this.props.handleShow}>Map</Button>
         <Button.Or />
-        <Button>List</Button>
+        <Button onClick={this.props.handleShow}>List</Button>
       </Button.Group>
     )
   }

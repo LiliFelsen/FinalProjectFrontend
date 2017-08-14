@@ -11,10 +11,10 @@ class UserNavbar extends Component {
       <Grid>
         <Grid.Row columns={3}>
           <Grid.Column width={6} textAlign='right' >
-            <AddressSearchAndCreate />
+            <AddressSearchAndCreate fetchRestaurants={this.props.fetchRestaurants} />
           </Grid.Column>
           <Grid.Column width={4} textAlign='center' >
-            <FilterShow />
+            <FilterShow handleShow={this.props.handleShow} />
           </Grid.Column>
           <Grid.Column width={6} textAlign='left' >
             <Input icon='search' placeholder='Browse your places...' />

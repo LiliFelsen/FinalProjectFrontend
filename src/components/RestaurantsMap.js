@@ -16,6 +16,7 @@ class RestaurantsMap extends Component {
 
           {this.props.restaurantsDetails.map(rest =>
             <RestaurantMapPoint
+              key={rest.id}
               lat={rest.lat}
               lng={rest.lng}
               text={rest.name}
