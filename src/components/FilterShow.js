@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'semantic-ui-react'
 
-class FilterShow extends Component {
-  render(){
-    return(
-      <Button.Group>
-        <Button onClick={this.props.handleShow}>Map</Button>
-        <Button.Or />
-        <Button onClick={this.props.handleShow}>List</Button>
-      </Button.Group>
-    )
-  }
+const FilterShow = ({ handleShow }) => {
+  return(
+    <Button.Group>
+      <Button onClick={handleShow}>Map</Button>
+      <Button.Or />
+      <Button onClick={handleShow}>List</Button>
+    </Button.Group>
+  )
 }
 
 export default FilterShow

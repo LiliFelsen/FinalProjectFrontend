@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Button, Modal, Icon, Dropdown, Form, Radio } from 'semantic-ui-react'
+import { Input, Button, Modal, Icon, Dropdown, Form, Radio, Grid } from 'semantic-ui-react'
 import Autocomplete from 'react-google-autocomplete'
 
 class AddressSearchAndCreate extends Component {
@@ -65,12 +65,7 @@ class AddressSearchAndCreate extends Component {
   }
 
   handleSelectTag = (event, data) => {
-    if (this.state.selectedTagsId.length > 5) {
-      alert('You may only select 5')
-    }
-    else {
-      this.setState({ selectedTagsId: data.value })
-    }
+    this.setState({ selectedTagsId: data.value })
   }
 
   handleTagInput = (event) => {
@@ -178,27 +173,32 @@ class AddressSearchAndCreate extends Component {
             open={this.state.modalOpen}
             onClose={this.handleClose}
           >
-            <Modal.Header>Add restaurant to your list</Modal.Header>
+            <Modal.Header>Add a restaurant to your list:</Modal.Header>
               <Modal.Description>
                 {this.state.currentRestaurant ?
-                  <div>
-                    <h2>{this.state.currentRestaurant.name}</h2>
-                    <h4>{this.state.currentRestaurant.address}</h4>
-                    <h4>{this.state.currentRestaurant.phone_number}</h4>
-                    <h4>{this.state.currentRestaurant.website}</h4>
-                    <p>Have you been there? {this.state.visited === false ? ' No' : ' Yes'}</p>
-                    <Radio toggle onChange={this.handleVisited} value={this.state.visited}/>
-                    <p>Select existing tags:</p>
-                    <Dropdown placeholder='Tags' fluid multiple selection options={tagOptions} onChange={this.handleSelectTag} />
-                    <p>and/or create new ones:</p>
-                    <ul>{this.state.newTags.map(tag => <li key={tag.id}>{tag}</li>)}</ul>
-                    <Form onSubmit={this.handleNewTag}>
-                      <Form.Field id='tag' placeholder='New tag name' control={Input} onChange={this.handleTagInput} />
-                      <Button type='submit'><Icon name='plus' /></Button>
-                    </Form>
-                    <br/>
-                    <Button onClick={this.handleSaveRestaurant} floated='right'>Save</Button>
-                  </div>
+                  <Grid style={{ margin: '0.5em 1em' }}>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <h2>{this.state.currentRestaurant.name}</h2>
+                        <h4>{this.state.currentRestaurant.address}</h4>
+                        <h4>{this.state.currentRestaurant.phone_number}</h4>
+                        <h4>{this.state.currentRestaurant.website}</h4>
+                        <p>Have you been there? {this.state.visited === false ? ' No' : ' Yes'}</p>
+                        <Radio toggle onChange={this.handleVisited} value={this.state.visited}/>
+                        <p>Select existing tags:</p>
+                        <Dropdown placeholder='Tags' fluid multiple selection options={tagOptions} onChange={this.handleSelectTag} />
+                        <br/>
+                        <p>and/or create new ones:</p>
+                        <ul>{this.state.newTags.map(tag => <li key={tag.id}>{tag}</li>)}</ul>
+                        <Form onSubmit={this.handleNewTag}>
+                          <Form.Field id='tag' placeholder='New tag name' control={Input} onChange={this.handleTagInput} />
+                          <Button type='submit'><Icon name='plus' /></Button>
+                        </Form>
+                        <br/>
+                        <Button onClick={this.handleSaveRestaurant} floated='right'>Save</Button>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
                   : null
                 }
               </Modal.Description>

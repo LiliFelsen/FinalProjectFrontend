@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const RestaurantMapPoint = (props) => {

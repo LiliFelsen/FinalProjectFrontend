@@ -4,7 +4,7 @@ import UserNavbar from './UserNavbar'
 import UserRestaurants from './UserRestaurants'
 import FiltersTags from './FiltersTags'
 import FriendList from './FriendList'
-import TestAutosuggest from './TestAutosuggest'
+import AuthAdapter from '../Auth/authAdapter'
 
 class UserPage extends Component {
 
@@ -20,10 +20,9 @@ class UserPage extends Component {
     fetch('http://localhost:3000/api/v1/user_restaurants')
       .then(resp => resp.json())
       .then(restaurants => this.setState({
-        userRestaurants: restaurants.filter(r => r.user_id === 1)
+        userRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId)
       }))
       .then(() => this.fetchRestaurantsDetails())
-  // TODO: make sure this.props.currentUserId works to filter userRestaurants
   }
 
   fetchRestaurantsDetails = () => {
@@ -39,10 +38,8 @@ class UserPage extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchUserRestaurants()
-    fetch('http://localhost:3000/api/v1/users/1')
-      .then(resp => resp.json())
-      .then(currentUser => this.setState({ currentUserId: currentUser.id }))
+    AuthAdapter.currentUser()
+      .then(user => this.setState({ currentUserId: user.id }))
   }
 
   handleShow = () => {
@@ -81,8 +78,6 @@ class UserPage extends Component {
           </Grid.Row>
         </Grid>
       </div>
-
-
     )
   }
 

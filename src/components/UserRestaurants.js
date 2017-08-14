@@ -14,7 +14,6 @@ const UserRestaurants = (props) => {
           <RestaurantsMap restaurantsDetails={filteredRestaurants} /> :
           <RestaurantsList restaurantsDetails={filteredRestaurants} />
         }
-
       </div>
     )
   }

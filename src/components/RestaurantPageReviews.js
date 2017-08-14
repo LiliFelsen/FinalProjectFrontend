@@ -3,7 +3,9 @@ import moment from "moment"
 import { Feed, Icon, Rating } from 'semantic-ui-react'
 
 const RestaurantPageReviews = ({ review }) => {
+
   const timeAgo = moment(review.created_at).fromNow()
+  
   return(
     <Feed.Event>
       <Feed.Label><Icon name='comment outline'/></Feed.Label>

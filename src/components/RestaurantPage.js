@@ -70,8 +70,8 @@ class RestaurantPage extends Component {
       <div className='restaurant_page'>
         <Grid container divided='vertically'>
           <Grid.Row>
-            <Grid.Column verticalAlign='middle'>
-              <Link to='/my_places'><Button content='Back to all my places'/></Link>
+            <Grid.Column>
+              <Link to='/my_places'><Button icon='chevron left' labelPosition='left' content='See all my places' /></Link>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row stretched columns={2} verticalAlign='middle'>

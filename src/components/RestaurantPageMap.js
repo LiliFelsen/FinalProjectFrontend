@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react'
 import { Container } from 'semantic-ui-react'
 import RestaurantMapPoint from './RestaurantMapPoint'
 
-const RestaurantPagemap = ({ text }) => <div>{text}</div>
+// const RestaurantPagemap = ({ text }) => <div>{text}</div>
 
 class RestaurantPageMap extends Component {
 

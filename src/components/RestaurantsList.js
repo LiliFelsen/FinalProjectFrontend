@@ -1,20 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Card } from 'semantic-ui-react'
 import RestaurantCard from './RestaurantCard'
 
-class RestaurantsList extends Component {
-  render(){
-    // console.log(this.props.restaurantsDetails);
-    return(
-      <div>
-        <Card.Group>
-          {this.props.restaurantsDetails.map(rest =>
-            <RestaurantCard key={rest.id} restaurant={rest} />
-          )}
-        </Card.Group>
-      </div>
-    )
-  }
+const RestaurantsList = ({ restaurantsDetails }) => {
+
+  return(
+    <Card.Group>
+      {restaurantsDetails.map(rest =>
+        <RestaurantCard key={rest.id} restaurant={rest} />
+      )}
+    </Card.Group>
+  )
 }
 
 export default RestaurantsList
