@@ -11,17 +11,24 @@ class UserPage extends Component {
   state = {
     currentUserId: '',
     userRestaurants: [],
+    doneRestaurants: [],
+    wishlistRestaurants: [],
     restaurantsDetails: [],
+    doneDetails: [],
+    wishlistDetails: [],
     mapVisible: true,
     searchTerm: '',
-    tagSearch: ''
+    tagSearch: '',
+    show: ''
   }
 
   fetchUserRestaurants = () => {
     fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
       .then(restaurants => this.setState({
-        userRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId)
+        userRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId),
+        doneRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId && r.visited === true),
+        wishlistRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId && r.visited === false),
       }))
       .then(() => this.fetchRestaurantsDetails())
   }
@@ -32,6 +39,10 @@ class UserPage extends Component {
       .then(restaurants => {
         this.setState({
           restaurantsDetails: this.state.userRestaurants.map(rest =>
+          restaurants.filter(r => r.id === rest.restaurant_id)[0]),
+          doneDetails:  this.state.doneRestaurants.map(rest =>
+          restaurants.filter(r => r.id === rest.restaurant_id)[0]),
+          wishlistDetails:  this.state.wishlistRestaurants.map(rest =>
           restaurants.filter(r => r.id === rest.restaurant_id)[0])
         })
       }
@@ -58,8 +69,8 @@ class UserPage extends Component {
     this.setState({ tagSearch: event.target.value })
   }
 
-  handleFilter = (event) => {
-
+  handleClick = (event) => {
+    this.setState({ show: event.target.value })
   }
 
   render(){
@@ -75,15 +86,18 @@ class UserPage extends Component {
           <Grid.Row>
             <Grid.Column width={3}>
               <FiltersTags
-              handleSearch={this.handleTagSearch} />
+              handleSearch={this.handleTagSearch}
+              handleClick={this.handleClick} />
             </Grid.Column>
             <Grid.Column width={10}>
-              <UserRestaurants currentUserId={this.state.currentUserId}
+              <UserRestaurants
                 mapVisible={this.state.mapVisible}
                 restaurantsDetails={this.state.restaurantsDetails}
-                userRestaurants={this.state.userRestaurants}
+                doneDetails={this.state.doneDetails}
+                wishlistDetails={this.state.wishlistDetails}
                 searchTerm={this.state.searchTerm}
                 tagSearch={this.state.tagSearch}
+                show={this.state.show}
               />
             </Grid.Column>
             <Grid.Column width={3}>

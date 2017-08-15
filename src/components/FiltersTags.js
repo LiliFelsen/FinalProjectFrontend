@@ -7,9 +7,9 @@ class FiltersTags extends Component {
       <div style={{ margin: '0 1em' }}>
         <br/>
 
-        <Button basic color='teal' size='mini' fluid>Done</Button><br/>
-        <Button basic color='violet' size='mini' fluid>Wishlist</Button><br/>
-        <Button basic color='black' size='mini' fluid>All</Button><br/>
+        <Button basic color='teal' size='mini' fluid onClick={this.props.handleClick} value='done'>Done</Button><br/>
+        <Button basic color='violet' size='mini' fluid onClick={this.props.handleClick} value='wishlist'>Wishlist</Button><br/>
+        <Button basic color='black' size='mini' fluid onClick={this.props.handleClick} value=''>All</Button><br/>
 
         <br/>
         <br/>

@@ -183,7 +183,7 @@ class AddressSearchAndCreate extends Component {
                         <h4>{this.state.currentRestaurant.address}</h4>
                         <h4>{this.state.currentRestaurant.phone_number}</h4>
                         <p>Have you been there? {this.state.visited === false ? ' No' : ' Yes'}</p>
-                        <Radio toggle onChange={this.handleVisited} value={this.state.visited}/>
+                        <Radio toggle onChange={this.handleVisited} />
                         <p>Select existing tags:</p>
                         <Dropdown placeholder='Tags' fluid multiple selection options={tagOptions} onChange={this.handleSelectTag} />
                         <br/>

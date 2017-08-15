@@ -66,7 +66,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/" component={NavBar} />
+          <Route path="/" render={() => <NavBar currentUser={this.state.auth.user}/>} />
 
           <Route path="/home" render={()=> this.state.auth.isLoggedIn ?
             <Redirect to="/my_places"/> :

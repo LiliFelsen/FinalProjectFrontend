@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Grid, Button, Feed, Radio } from 'semantic-ui-react'
 import RestaurantPageMap from './RestaurantPageMap'
 import RestaurantPageReviews from './RestaurantPageReviews'
@@ -106,7 +105,7 @@ class RestaurantPage extends Component {
               {!this.state.visited ?
                 <div>
                   Did you try that restaurant since you added it?
-                  <Radio toggle onChange={this.handleVisited} value={this.state.visited}/>
+                  <Radio toggle onChange={this.handleVisited} />
                 </div>
                 : <Button color='teal' size='mini' disabled>Done</Button>}
                 <br/>
