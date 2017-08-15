@@ -16,7 +16,7 @@
     "semantic-ui-react": "^0.71.3"
   },
   "scripts": {
-    "start": "PORT=3333 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
