@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react'
 
 const RestaurantDetailledCard = ({ restaurant }) => {
   return(
-    <Card>
+    <Card fluid>
       <Card.Content>
         <Card.Header>
           <center>{restaurant.name}</center>

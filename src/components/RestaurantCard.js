@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card } from 'semantic-ui-react'
+import { Card, Button } from 'semantic-ui-react'
 
 const RestaurantCard = ({ restaurant }) => {
+  debugger
   return (
     <Link to={`/my_places/${restaurant.id}`}>
       <Card key={restaurant.id}>
@@ -13,8 +14,13 @@ const RestaurantCard = ({ restaurant }) => {
           <Card.Description>
             {restaurant.address}<br/>
             {restaurant.phone_number}<br/>
-            <a href={restaurant.website} target="_blank">{restaurant.website}</a><br/>
+
           </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          {restaurant.user_restaurants[0].visited ?
+            <Button color='teal' size='mini' disabled>Done</Button> :
+            <Button color='violet' size='mini' disabled>Wishlist</Button>}
         </Card.Content>
       </Card>
     </Link>

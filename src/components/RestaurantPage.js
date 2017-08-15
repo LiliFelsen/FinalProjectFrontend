@@ -1,19 +1,42 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Grid, Button, Feed } from 'semantic-ui-react'
+import { Grid, Button, Feed, Radio } from 'semantic-ui-react'
 import RestaurantPageMap from './RestaurantPageMap'
 import RestaurantPageReviews from './RestaurantPageReviews'
 import RestaurantDetailledCard from './RestaurantDetailledCard'
 import AddReviewModal from './AddReviewModal'
+import AuthAdapter from '../Auth/authAdapter'
 
 class RestaurantPage extends Component {
 
   state = {
     modalOpen: false,
+    currentUserId: '',
     currentRestaurant: '',
+    currentUserRestaurant: '',
+    visited: '',
     restaurantReviews: [],
     review: '',
     rating: 0
+  }
+
+  fetchUserRestaurantInfo = () => {
+    fetch('http://localhost:3000/api/v1/user_restaurants')
+      .then(resp => resp.json())
+      .then(userRestaurants => this.setState({
+        currentUserRestaurant: userRestaurants.filter(ur =>
+        ur.user_id === this.state.currentUserId && ur.restaurant_id === this.state.currentRestaurant.id)[0]
+      }))
+      .then(() => this.setState({ visited: this.state.currentUserRestaurant.visited }))
+  }
+
+  fetchReviews = () => {
+    fetch('http://localhost:3000/api/v1/reviews')
+      .then(resp => resp.json())
+      .then(reviews => this.setState({
+        restaurantReviews: reviews.filter(r =>
+          r.user_id === this.state.currentUserId && r.restaurant_id === this.state.currentRestaurant.id)
+      }))
   }
 
   fetchData = () => {
@@ -21,17 +44,14 @@ class RestaurantPage extends Component {
     fetch(`http://localhost:3000/api/v1/restaurants/${id}`)
       .then(resp => resp.json())
       .then(currentRestaurant => this.setState({ currentRestaurant }))
-    fetch('http://localhost:3000/api/v1/reviews')
-      .then(resp => resp.json())
-      .then(reviews => this.setState({
-        restaurantReviews: reviews.filter(r =>
-          r.user_id === 1 && r.restaurant_id === this.state.currentRestaurant.id)
-      }))
-      // TODO: update user_id with real current user
+      .then(() => this.fetchReviews())
+      .then(() => this.fetchUserRestaurantInfo())
   }
 
   componentDidMount = () => {
-    this.fetchData()
+    AuthAdapter.currentUser()
+      .then(user => this.setState({ currentUserId: user.id }))
+      .then(() => this.fetchData())
   }
 
   handleOpen = (e) => this.setState({
@@ -53,33 +73,43 @@ class RestaurantPage extends Component {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        user_id: 1,
+        user_id: this.state.currentUserId,
         restaurant_id: this.state.currentRestaurant.id,
         rating: this.state.rating,
         notes: this.state.review
       })
     })
-    .then(() => {
-      this.fetchData()
+    .then(() => this.fetchReviews())
+  }
+
+  handleVisited = (event) => {
+    this.setState({ visited: !this.state.visited })
+    fetch(`http://localhost:3000/api/v1/user_restaurants/${this.state.currentUserRestaurant.id}`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        visited: true
+      })
     })
-    // TODO: update user_id with real current user
   }
 
   render(){
     return(
       <div className='restaurant_page'>
         <Grid container divided='vertically'>
-          <Grid.Row>
-            <Grid.Column>
-              <Link to='/my_places'><Button icon='chevron left' labelPosition='left' content='See all my places' /></Link>
-            </Grid.Column>
-          </Grid.Row>
           <Grid.Row stretched columns={2} verticalAlign='middle'>
             <Grid.Column>
               <RestaurantPageMap restaurant={this.state.currentRestaurant} />
             </Grid.Column>
             <Grid.Column>
               <RestaurantDetailledCard restaurant={this.state.currentRestaurant} />
+              {!this.state.visited ?
+                <div>
+                  Did you try that restaurant since you added it?
+                  <Radio toggle onChange={this.handleVisited} value={this.state.visited}/>
+                </div>
+                : <Button color='teal' size='mini' disabled>Done</Button>}
+                <br/>
               <AddReviewModal restaurant={this.state.currentRestaurant}
                 review={this.state.review}
                 rating={this.state.rating}

@@ -13,7 +13,8 @@ class UserPage extends Component {
     userRestaurants: [],
     restaurantsDetails: [],
     mapVisible: true,
-    searchTerm: ''
+    searchTerm: '',
+    tagSearch: ''
   }
 
   fetchUserRestaurants = () => {
@@ -40,6 +41,7 @@ class UserPage extends Component {
   componentDidMount = () => {
     AuthAdapter.currentUser()
       .then(user => this.setState({ currentUserId: user.id }))
+      .then(() => this.fetchUserRestaurants())
   }
 
   handleShow = () => {
@@ -48,8 +50,16 @@ class UserPage extends Component {
     })
   }
 
-  handleSearch = (event) => {
+  handleSearchByName = (event) => {
     this.setState({ searchTerm: event.target.value })
+  }
+
+  handleTagSearch = (event) => {
+    this.setState({ tagSearch: event.target.value })
+  }
+
+  handleFilter = (event) => {
+
   }
 
   render(){
@@ -58,18 +68,22 @@ class UserPage extends Component {
         <UserNavbar handleShow={this.handleShow}
           fetchRestaurants={this.fetchUserRestaurants}
           restaurantsDetails={this.state.restaurantsDetails}
-          handleSearch={this.handleSearch}
+          handleSearch={this.handleSearchByName}
+          currentUserId={this.state.currentUserId}
         />
         <Grid>
           <Grid.Row>
             <Grid.Column width={3}>
-              <FiltersTags />
+              <FiltersTags
+              handleSearch={this.handleTagSearch} />
             </Grid.Column>
             <Grid.Column width={10}>
               <UserRestaurants currentUserId={this.state.currentUserId}
                 mapVisible={this.state.mapVisible}
                 restaurantsDetails={this.state.restaurantsDetails}
+                userRestaurants={this.state.userRestaurants}
                 searchTerm={this.state.searchTerm}
+                tagSearch={this.state.tagSearch}
               />
             </Grid.Column>
             <Grid.Column width={3}>

@@ -3,7 +3,6 @@ import { Card } from 'semantic-ui-react'
 import RestaurantCard from './RestaurantCard'
 
 const RestaurantsList = ({ restaurantsDetails }) => {
-
   return(
     <Card.Group>
       {restaurantsDetails.map(rest =>

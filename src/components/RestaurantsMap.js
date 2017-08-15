@@ -8,9 +8,9 @@ import RestaurantMapPoint from './RestaurantMapPoint'
 class RestaurantsMap extends Component {
   render(){
     return(
-      <Container style={{ width: '100%', height: '500px' }}>
+      <Container style={{ width: '100%', height: '630px' }}>
         <GoogleMapReact
-          center={{lat: 40.7664772, lng: -73.9759242}}
+          center={{lat: 40.7510467, lng: -73.9754778}}
           defaultZoom={12}
         >
           {this.props.restaurantsDetails.map(rest =>

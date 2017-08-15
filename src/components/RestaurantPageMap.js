@@ -9,9 +9,9 @@ class RestaurantPageMap extends Component {
 
   render(){
     return(
-      <Container style={{ width: '100%', height: '390px' }}>
+      <Container style={{ width: '100%', height: '420px' }}>
         <GoogleMapReact
-          center={{lat: 40.7664772, lng: -73.9759242}}
+          center={{lat: 40.7510467, lng: -73.9754778}}
           defaultZoom={12}
         >
             <RestaurantMapPoint

@@ -22,7 +22,7 @@ class AddressSearchAndCreate extends Component {
   }
 
   handleOpen = () => {
-    this.setState({ modalOpen: true })
+    this.setState({ modalOpen: true, newTags: [] })
   }
 
   handleClose = () => {
@@ -87,7 +87,7 @@ class AddressSearchAndCreate extends Component {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        user_id: 1,
+        user_id: this.props.currentUserId,
         restaurant_id: this.state.currentRestaurant.id,
         visited: this.state.visited
       })
@@ -148,9 +148,8 @@ class AddressSearchAndCreate extends Component {
     this.createUserRestaurant()
     this.createRestaurantTags()
     this.createTagsThenRestaurantTags()
-    this.setState({ newTags: [] })
+    document.getElementById('autocomplete').value = ""
   }
-
 
   render(){
     const tagOptions = this.state.existingTags.map(tag => {
@@ -162,6 +161,7 @@ class AddressSearchAndCreate extends Component {
           <Input>
             <Autocomplete
               // style={{width: '100%'}}
+              id='autocomplete'
               placeholder='Search new restaurant'
               onPlaceSelected={this.handleSelectedRestaurant}
               types={['establishment']}
@@ -182,7 +182,6 @@ class AddressSearchAndCreate extends Component {
                         <h2>{this.state.currentRestaurant.name}</h2>
                         <h4>{this.state.currentRestaurant.address}</h4>
                         <h4>{this.state.currentRestaurant.phone_number}</h4>
-                        <h4>{this.state.currentRestaurant.website}</h4>
                         <p>Have you been there? {this.state.visited === false ? ' No' : ' Yes'}</p>
                         <Radio toggle onChange={this.handleVisited} value={this.state.visited}/>
                         <p>Select existing tags:</p>

@@ -6,7 +6,7 @@ class NavBar extends Component {
 
   render(){
     return(
-      <Menu pointing secondary>
+      <Menu>
         <Menu.Item><NavLink to='/my_places'>See all my places</NavLink></Menu.Item>
         <Menu.Item position='right'>
           <NavLink to="/logout">Logout</NavLink>

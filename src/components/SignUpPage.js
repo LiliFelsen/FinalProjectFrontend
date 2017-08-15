@@ -5,7 +5,8 @@ class SignUpPage extends Component {
 
   state = {
     username: '',
-    password: ''
+    password: '',
+    email: ''
   }
 
   handleChange = (event) => {
@@ -15,7 +16,7 @@ class SignUpPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.onSendSignUp(this.state)
-    this.setState({ username: '', password: '' })
+    this.setState({ username: '', password: '', email: '' })
   }
 
   render(){
