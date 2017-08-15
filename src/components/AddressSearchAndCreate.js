@@ -16,7 +16,7 @@ class AddressSearchAndCreate extends Component {
     }
 
   componentDidMount = () => {
-    fetch('http://localhost:3000/api/v1/tags')
+    fetch(process.env.REACT_APP_API + '/tags')
       .then(resp => resp.json())
       .then(existingTags => this.setState({ existingTags }))
   }
@@ -30,7 +30,7 @@ class AddressSearchAndCreate extends Component {
   }
 
   fetchRestaurant = () => {
-    fetch('http://localhost:3000/api/v1/restaurants')
+    fetch(process.env.REACT_APP_API + '/restaurants')
       .then(resp => resp.json())
       .then(restaurants => {
         this.setState({
@@ -56,7 +56,7 @@ class AddressSearchAndCreate extends Component {
       hours_saturday: place.opening_hours.weekday_text[5],
       hours_sunday: place.opening_hours.weekday_text[6]
     }
-    fetch('http://localhost:3000/api/v1/restaurants', {
+    fetch(process.env.REACT_APP_API + '/restaurants', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(restaurant)
@@ -83,7 +83,7 @@ class AddressSearchAndCreate extends Component {
   }
 
   createUserRestaurant = () => {
-    fetch('http://localhost:3000/api/v1/user_restaurants', {
+    fetch(process.env.REACT_APP_API + '/user_restaurants', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -98,7 +98,7 @@ class AddressSearchAndCreate extends Component {
   createRestaurantTags = () => {
     if (this.state.selectedTagsId) {
       this.state.selectedTagsId.map(tagId =>
-        fetch('http://localhost:3000/api/v1/restaurant_tags', {
+        fetch(process.env.REACT_APP_API + '/restaurant_tags', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -115,7 +115,7 @@ class AddressSearchAndCreate extends Component {
       this.state.existingTags.filter(e => e.name === tag)[0].id
     )
     tagsToAddToRest.map(tagId =>
-      fetch('http://localhost:3000/api/v1/restaurant_tags', {
+      fetch(process.env.REACT_APP_API + '/restaurant_tags', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -129,12 +129,12 @@ class AddressSearchAndCreate extends Component {
   createTagsThenRestaurantTags = () => {
     if (this.state.newTags.length > 0) {
       this.state.newTags.map(tag =>
-        fetch('http://localhost:3000/api/v1/tags', {
+        fetch(process.env.REACT_APP_API + '/tags', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ name: tag })
         })
-        .then(() => fetch('http://localhost:3000/api/v1/tags')
+        .then(() => fetch(process.env.REACT_APP_API + '/tags')
           .then(resp => resp.json())
           .then(existingTags => this.setState({ existingTags }))
           .then(() => this.createRestaurantTagsForNewTags())

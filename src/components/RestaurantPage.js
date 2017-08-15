@@ -21,7 +21,7 @@ class RestaurantPage extends Component {
   }
 
   fetchUserRestaurantInfo = () => {
-    fetch('http://localhost:3000/api/v1/user_restaurants')
+    fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
       .then(userRestaurants => this.setState({
         currentUserRestaurant: userRestaurants.filter(ur =>
@@ -31,7 +31,7 @@ class RestaurantPage extends Component {
   }
 
   fetchReviews = () => {
-    fetch('http://localhost:3000/api/v1/reviews')
+    fetch(process.env.REACT_APP_API + '/reviews')
       .then(resp => resp.json())
       .then(reviews => this.setState({
         restaurantReviews: reviews.filter(r =>
@@ -41,7 +41,7 @@ class RestaurantPage extends Component {
 
   fetchData = () => {
     const id = this.props.match.params.id
-    fetch(`http://localhost:3000/api/v1/restaurants/${id}`)
+    fetch(process.env.REACT_APP_API + `/restaurants/${id}`)
       .then(resp => resp.json())
       .then(currentRestaurant => this.setState({ currentRestaurant }))
       .then(() => this.fetchReviews())
@@ -69,7 +69,7 @@ class RestaurantPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.handleClose()
-    fetch('http://localhost:3000/api/v1/reviews', {
+    fetch(process.env.REACT_APP_API + '/reviews', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -84,7 +84,7 @@ class RestaurantPage extends Component {
 
   handleVisited = (event) => {
     this.setState({ visited: !this.state.visited })
-    fetch(`http://localhost:3000/api/v1/user_restaurants/${this.state.currentUserRestaurant.id}`, {
+    fetch(process.env.REACT_APP_API + `/user_restaurants/${this.state.currentUserRestaurant.id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000/api/v1'
+const baseUrl = process.env.REACT_APP_API
 
 export default class AuthAdapter {
   static login(loginParams) {

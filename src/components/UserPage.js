@@ -18,7 +18,7 @@ class UserPage extends Component {
   }
 
   fetchUserRestaurants = () => {
-    fetch('http://localhost:3000/api/v1/user_restaurants')
+    fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
       .then(restaurants => this.setState({
         userRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId)
@@ -27,7 +27,7 @@ class UserPage extends Component {
   }
 
   fetchRestaurantsDetails = () => {
-    fetch('http://localhost:3000/api/v1/restaurants')
+    fetch(process.env.REACT_APP_API + '/restaurants')
       .then(resp => resp.json())
       .then(restaurants => {
         this.setState({
