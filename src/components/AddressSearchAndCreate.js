@@ -168,7 +168,7 @@ class AddressSearchAndCreate extends Component {
             />
           </Input>
           <Modal
-            trigger={<Button onClick={this.handleOpen} icon='plus' color='grey'/>}
+            trigger={<Button onClick={this.handleOpen} icon='plus' color='white'/>}
             open={this.state.modalOpen}
             onClose={this.handleClose}
           >

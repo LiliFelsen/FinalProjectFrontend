@@ -17,8 +17,8 @@ const RestaurantCard = ({ restaurant }) => {
         </Card.Content>
         <Card.Content extra>
           {restaurant.user_restaurants[0].visited ?
-            <Button color='red' size='mini' disabled>Visited</Button> :
-            <Button color='teal' size='mini' disabled>Wishlist</Button>}
+            <Button color='red' className='button-colored-red' size='mini' disabled>Visited</Button> :
+            <Button color='teal' className='button-colored-teal' size='mini' disabled>Wishlist</Button>}
         </Card.Content>
       </Card>
 

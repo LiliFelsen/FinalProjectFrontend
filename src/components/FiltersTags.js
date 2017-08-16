@@ -11,8 +11,8 @@ class FiltersTags extends Component {
               <Card.Content>
                 <h3>Filter your places:</h3>
                 <br/><br/>
-                <Button basic color='red' size='small' fluid onClick={this.props.handleClick} value='done'>Visited</Button><br/>
-                <Button basic color='teal' size='small' fluid onClick={this.props.handleClick} value='wishlist'>Wishlist</Button><br/>
+                <Button basic className='button-colored-red' color='red' size='small' fluid onClick={this.props.handleClick} value='done'>Visited</Button><br/>
+                <Button basic className='button-colored-teal' color='teal' size='small' fluid onClick={this.props.handleClick} value='wishlist'>Wishlist</Button><br/>
                 <Button basic color='black' size='small' fluid onClick={this.props.handleClick} value=''>All</Button><br/>
                 <br/>
                 <br/>

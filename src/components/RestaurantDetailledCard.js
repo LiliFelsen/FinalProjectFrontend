@@ -5,7 +5,7 @@ const RestaurantDetailledCard = ({ restaurant }) => {
   return(
     <Card fluid>
       <Card.Content>
-        <Card.Header style={{ color: '#00B3B3'}}>
+        <Card.Header style={{ color: '#14DBD9'}}>
           <center>{restaurant.name}</center>
         </Card.Header>
       </Card.Content>

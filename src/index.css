@@ -6,6 +6,19 @@ body {
   font-family: sans-serif;
 }
 
+.title {
+  font-family: 'Rock Salt', cursive;
+  font-size: 54px;
+}
+
+.button-colored-teal {
+  background-color: #14DBD9!important
+}
+
+.button-colored-red {
+  background-color: #E94418!important
+}
+
 #landing-page {
   background-image: url('./assets/katlyn-giberson-185277.jpg');
   width: 100%;

@@ -11,14 +11,14 @@ class LandingPage extends Component {
           <Grid.Column computer={6} largeScreen={5} >
             <Card fluid textAlign='center' style={{ background: 'rgba(245, 243, 243, 0.90)' }}>
               <Card.Content>
-                <br/><br/>
+                <br/><br/><br/><br/>
                 <center>
-                 <h1 style={{ color: '#EF4343' }}>ALL MY PLACES</h1>
-                   <br/>
+                 <div className='title' style={{ color: '#E94418' }}>All My Places</div>
+                   <br/><br/><br/>
                  <h3><i>Bookmark the places you love<br/> and want to try!</i></h3>
                  <br/><br/>
-                 <Link to="/signup"><Button color='teal'>Sign Up</Button></Link>
-                 <Link to="/login"><Button color='teal'>Login</Button></Link>
+                 <Link to="/signup"><Button color='teal' className='button-colored-teal'>Sign Up</Button></Link>
+                 <Link to="/login"><Button color='teal' className='button-colored-teal'>Login</Button></Link>
                  </center>
                  <br/><br/>
               </Card.Content>

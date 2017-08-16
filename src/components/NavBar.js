@@ -6,8 +6,12 @@ const NavBar = ({ username }) => {
 
   return(
     <Menu inverted>
-      <Menu.Item><i>Hi, {username}!</i></Menu.Item>
-      <Menu.Item><NavLink to='/my_places'>See all your places</NavLink></Menu.Item>
+      <Menu.Item>
+        <i style={{ color: '#14DBD9' }}>Hi, {username}!</i>
+      </Menu.Item>
+      <Menu.Item>
+        <NavLink to='/my_places'>See all your places</NavLink>
+      </Menu.Item>
       <Menu.Item position='right'>
         <NavLink to="/logout">Logout</NavLink>
       </Menu.Item>

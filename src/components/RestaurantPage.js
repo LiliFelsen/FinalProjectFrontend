@@ -81,6 +81,7 @@ class RestaurantPage extends Component {
       })
     })
     .then(() => this.fetchReviews())
+    .then(() => this.setState({ rating: 0 }))
   }
 
   handleVisited = (event) => {
@@ -120,7 +121,7 @@ class RestaurantPage extends Component {
                   <Radio toggle onChange={this.handleVisited} /><br/>
                   </Card.Content>
                 </Card>
-                : <Button color='red' size='tiny'>Visited</Button> }
+                : <Button color='red' className='button-colored-red' size='tiny'>Visited</Button> }
                 <br/>
               <AddReviewModal restaurant={this.state.currentRestaurant}
                 review={this.state.review}

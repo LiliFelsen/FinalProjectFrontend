@@ -8,7 +8,7 @@ const RestaurantPageReviews = ({ review, deleteReview }) => {
 
   return(
     <Feed.Event>
-      <Feed.Label><Icon name='comment'/></Feed.Label>
+      <Feed.Label><Icon name='comment' color='black'/></Feed.Label>
       <Feed.Content>
         <Feed.Summary>
           " {review.notes} "
