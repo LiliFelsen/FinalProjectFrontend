@@ -7,8 +7,8 @@ class LandingPage extends Component {
   render(){
     return(
       <div id='landing-page'>
-        <Grid centered style={{ margin: '12em 0' }}>
-          <Grid.Column computer={8} largeScreen={6} >
+        <Grid centered style={{ margin: '15em 0' }}>
+          <Grid.Column computer={6} largeScreen={5} >
             <Card fluid textAlign='center' style={{ background: 'rgba(245, 243, 243, 0.90)' }}>
               <Card.Content>
                 <br/><br/>

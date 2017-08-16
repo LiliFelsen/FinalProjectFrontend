@@ -94,6 +94,14 @@ class RestaurantPage extends Component {
     })
   }
 
+  handleDeleteReview = (event) => {
+    fetch(process.env.REACT_APP_API + `/reviews/${event.target.id}`, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(() => this.fetchReviews())
+  }
+
   render(){
     return(
       <div id='restaurant-page'>
@@ -125,9 +133,9 @@ class RestaurantPage extends Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row centered columns={1}>
-            <Grid.Column verticalAlign='middle' width={10}>
+            <Grid.Column verticalAlign='middle' width={8}>
               <Feed style={{ background: 'rgba(245, 243, 243, 0.90)' }}>
-                {this.state.restaurantReviews.reverse().map(r => <RestaurantPageReviews key={r.id} review={r} />)}
+                {this.state.restaurantReviews.reverse().map(r => <RestaurantPageReviews key={r.id} review={r} deleteReview={this.handleDeleteReview}/>)}
               </Feed>
             </Grid.Column>
           </Grid.Row>

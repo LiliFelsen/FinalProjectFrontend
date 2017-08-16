@@ -6,7 +6,7 @@ import FilterShow from './FilterShow'
 const UserNavbar = (props) => {
 
   return(
-    <Grid>
+    <Grid style={{ margin: '0 2em 0 0' }}>
       <Grid.Row columns={3}>
         <Grid.Column width={6} textAlign='right' >
           <AddressSearchAndCreate fetchRestaurants={props.fetchRestaurants}

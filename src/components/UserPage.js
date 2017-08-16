@@ -79,13 +79,14 @@ class UserPage extends Component {
     return(
       <div id='user-page'>
         <NavBar username={this.state.currentUsername} />
-        <UserNavbar handleShow={this.handleShow}
+        <UserNavbar
+          handleShow={this.handleShow}
           fetchRestaurants={this.fetchUserRestaurants}
           restaurantsDetails={this.state.restaurantsDetails}
           handleSearch={this.handleSearchByName}
           currentUserId={this.state.currentUserId}
         />
-        <Grid centered>
+        <Grid centered style={{ margin: '3em 0' }}>
           <Grid.Row>
             <Grid.Column width={3}>
               <FiltersTags
