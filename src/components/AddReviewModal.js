@@ -25,7 +25,7 @@ const AddReviewModal = (props) => {
           <Rating icon='star' rating={props.rating} maxRating={10} />
           <br/>
           <br/>
-          <Button type='submit' floated='right' style={{ margin: '0 0 1em 0' }}>
+          <Button type='submit' floated='right' style={{ margin: '0 0 1em 0' }} color='black'>
             <Icon name='plus' /> Add
           </Button>
         </Form>

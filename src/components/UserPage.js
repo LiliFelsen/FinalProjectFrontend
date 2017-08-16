@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid } from 'semantic-ui-react'
+import NavBar from './NavBar'
 import UserNavbar from './UserNavbar'
 import UserRestaurants from './UserRestaurants'
 import FiltersTags from './FiltersTags'
@@ -10,6 +11,7 @@ class UserPage extends Component {
 
   state = {
     currentUserId: '',
+    currentUsername: '',
     userRestaurants: [],
     doneRestaurants: [],
     wishlistRestaurants: [],
@@ -51,7 +53,7 @@ class UserPage extends Component {
 
   componentDidMount = () => {
     AuthAdapter.currentUser()
-      .then(user => this.setState({ currentUserId: user.id }))
+      .then(user => this.setState({ currentUserId: user.id, currentUsername: user.username }))
       .then(() => this.fetchUserRestaurants())
   }
 
@@ -75,21 +77,22 @@ class UserPage extends Component {
 
   render(){
     return(
-      <div>
+      <div id='user-page'>
+        <NavBar username={this.state.currentUsername} />
         <UserNavbar handleShow={this.handleShow}
           fetchRestaurants={this.fetchUserRestaurants}
           restaurantsDetails={this.state.restaurantsDetails}
           handleSearch={this.handleSearchByName}
           currentUserId={this.state.currentUserId}
         />
-        <Grid>
+        <Grid centered>
           <Grid.Row>
             <Grid.Column width={3}>
               <FiltersTags
               handleSearch={this.handleTagSearch}
               handleClick={this.handleClick} />
             </Grid.Column>
-            <Grid.Column width={10}>
+            <Grid.Column width={8}>
               <UserRestaurants
                 mapVisible={this.state.mapVisible}
                 restaurantsDetails={this.state.restaurantsDetails}

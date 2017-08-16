@@ -4,10 +4,11 @@ import LandingPage from './LandingPage'
 import LoginPage from './LoginPage'
 import SignUpPage from './SignUpPage'
 import UserPage from './UserPage'
-import NavBar from './NavBar'
 import RestaurantPage from './RestaurantPage'
 import Auth from '../Auth/authorize'
 import AuthAdapter from '../Auth/authAdapter'
+
+import '../index.css'
 
 class App extends Component {
 
@@ -66,8 +67,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/" render={() => <NavBar currentUser={this.state.auth.user}/>} />
-
           <Route path="/home" render={()=> this.state.auth.isLoggedIn ?
             <Redirect to="/my_places"/> :
             <LandingPage />} />

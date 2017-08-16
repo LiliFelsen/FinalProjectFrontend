@@ -160,7 +160,6 @@ class AddressSearchAndCreate extends Component {
       <div>
           <Input>
             <Autocomplete
-              // style={{width: '100%'}}
               id='autocomplete'
               placeholder='Search new restaurant'
               onPlaceSelected={this.handleSelectedRestaurant}
@@ -169,7 +168,7 @@ class AddressSearchAndCreate extends Component {
             />
           </Input>
           <Modal
-            trigger={<Button onClick={this.handleOpen} icon='plus' />}
+            trigger={<Button onClick={this.handleOpen} icon='plus' color='grey'/>}
             open={this.state.modalOpen}
             onClose={this.handleClose}
           >
@@ -194,7 +193,7 @@ class AddressSearchAndCreate extends Component {
                           <Button type='submit'><Icon name='plus' /></Button>
                         </Form>
                         <br/>
-                        <Button onClick={this.handleSaveRestaurant} floated='right'>Save</Button>
+                        <Button onClick={this.handleSaveRestaurant} floated='right' color='black'>Save</Button>
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Grid, Button, Feed, Radio } from 'semantic-ui-react'
+import { Grid, Button, Feed, Radio, Card } from 'semantic-ui-react'
+import NavBar from './NavBar'
 import RestaurantPageMap from './RestaurantPageMap'
 import RestaurantPageReviews from './RestaurantPageReviews'
 import RestaurantDetailledCard from './RestaurantDetailledCard'
@@ -11,6 +12,7 @@ class RestaurantPage extends Component {
   state = {
     modalOpen: false,
     currentUserId: '',
+    currentUsername: '',
     currentRestaurant: '',
     currentUserRestaurant: '',
     visited: '',
@@ -49,7 +51,7 @@ class RestaurantPage extends Component {
 
   componentDidMount = () => {
     AuthAdapter.currentUser()
-      .then(user => this.setState({ currentUserId: user.id }))
+      .then(user => this.setState({ currentUserId: user.id, currentUsername: user.username }))
       .then(() => this.fetchData())
   }
 
@@ -94,7 +96,8 @@ class RestaurantPage extends Component {
 
   render(){
     return(
-      <div className='restaurant_page'>
+      <div id='restaurant-page'>
+        <NavBar username={this.state.currentUsername} />
         <Grid container divided='vertically'>
           <Grid.Row stretched columns={2} verticalAlign='middle'>
             <Grid.Column>
@@ -103,11 +106,13 @@ class RestaurantPage extends Component {
             <Grid.Column>
               <RestaurantDetailledCard restaurant={this.state.currentRestaurant} />
               {!this.state.visited ?
-                <div>
+                <Card fluid>
+                  <Card.Content>
                   Did you try that restaurant since you added it?
-                  <Radio toggle onChange={this.handleVisited} />
-                </div>
-                : <Button color='teal' size='mini' disabled>Done</Button>}
+                  <Radio toggle onChange={this.handleVisited} /><br/>
+                  </Card.Content>
+                </Card>
+                : <Button color='red' size='tiny'>Visited</Button> }
                 <br/>
               <AddReviewModal restaurant={this.state.currentRestaurant}
                 review={this.state.review}
@@ -121,7 +126,7 @@ class RestaurantPage extends Component {
           </Grid.Row>
           <Grid.Row centered columns={1}>
             <Grid.Column verticalAlign='middle' width={10}>
-              <Feed>
+              <Feed style={{ background: 'rgba(245, 243, 243, 0.90)' }}>
                 {this.state.restaurantReviews.reverse().map(r => <RestaurantPageReviews key={r.id} review={r} />)}
               </Feed>
             </Grid.Column>

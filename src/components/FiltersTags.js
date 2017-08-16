@@ -1,20 +1,28 @@
 import React, { Component } from 'react'
-import { Button, Input } from 'semantic-ui-react'
+import { Button, Input, Grid, Card } from 'semantic-ui-react'
 
 class FiltersTags extends Component {
   render(){
     return(
-      <div style={{ margin: '0 1em' }}>
-        <br/>
-
-        <Button basic color='teal' size='mini' fluid onClick={this.props.handleClick} value='done'>Done</Button><br/>
-        <Button basic color='violet' size='mini' fluid onClick={this.props.handleClick} value='wishlist'>Wishlist</Button><br/>
-        <Button basic color='black' size='mini' fluid onClick={this.props.handleClick} value=''>All</Button><br/>
-
-        <br/>
-        <br/>
-
-        <Input icon='tag' placeholder='Filter by tag' fluid onChange={this.props.handleSearch}/>
+      <div style={{ margin: '2em 0' }}>
+        <Grid centered>
+          <Grid.Column>
+            <Card fluid textAlign='center' style={{ background: 'rgba(245, 243, 243, 0.85)' }}>
+              <Card.Content>
+                <h3>Filter your places:</h3>
+                <br/><br/>
+                <Button basic color='red' size='small' fluid onClick={this.props.handleClick} value='done'>Visited</Button><br/>
+                <Button basic color='teal' size='small' fluid onClick={this.props.handleClick} value='wishlist'>Wishlist</Button><br/>
+                <Button basic color='black' size='small' fluid onClick={this.props.handleClick} value=''>All</Button><br/>
+                <br/>
+                <br/>
+                <Input icon='tag' placeholder='Filter by tag' fluid onChange={this.props.handleSearch}/>
+                <br/>
+                <br/><br/>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }

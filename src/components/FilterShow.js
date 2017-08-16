@@ -4,9 +4,9 @@ import { Button } from 'semantic-ui-react'
 const FilterShow = ({ handleShow }) => {
   return(
     <Button.Group>
-      <Button onClick={handleShow}>Map</Button>
+      <Button onClick={handleShow} color='red'>Map</Button>
       <Button.Or />
-      <Button onClick={handleShow}>List</Button>
+      <Button onClick={handleShow} color='teal'>List</Button>
     </Button.Group>
   )
 }
