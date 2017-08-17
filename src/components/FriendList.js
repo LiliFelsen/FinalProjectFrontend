@@ -6,8 +6,8 @@ class FriendList extends Component {
     return(
       <div style={{ margin: '2em 0 0 0' }}>
         <Grid centered>
-          <Grid.Column>
-            <Card fluid textAlign='center' style={{ background: 'rgba(245, 243, 243, 0.85)' }}>
+          <Grid.Column textAlign='center'>
+            <Card fluid style={{ background: 'rgba(245, 243, 243, 0.85)' }}>
               <Card.Content>
                 <br/><br/><br/><br/><br/><br/><br/>
                 <h4>Friend list will be here</h4>

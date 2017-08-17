@@ -41,6 +41,7 @@ class AddressSearchAndCreate extends Component {
   }
 
   handleSelectedRestaurant = (place) => {
+    console.log(place);
     this.setState({ currentPlaceId: place.place_id })
     let restaurant = {
       placeId: place.place_id,
@@ -168,7 +169,7 @@ class AddressSearchAndCreate extends Component {
             />
           </Input>
           <Modal
-            trigger={<Button onClick={this.handleOpen} icon='plus' color='white'/>}
+            trigger={<Button onClick={this.handleOpen} icon='plus' color='grey'/>}
             open={this.state.modalOpen}
             onClose={this.handleClose}
           >

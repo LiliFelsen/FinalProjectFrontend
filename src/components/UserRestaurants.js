@@ -4,11 +4,27 @@ import RestaurantsList from './RestaurantsList'
 
 const UserRestaurants = (props) => {
 
-    let filteredRestaurants = []
+  let filteredRestaurants = []
 
-    if (props.searchTerm) {
-      filteredRestaurants = props.restaurantsDetails.filter(rest =>
-        rest.name.toLowerCase().includes(props.searchTerm.toLowerCase()) )
+  if (props.searchTerm) {
+    filteredRestaurants = props.restaurantsDetails.filter(rest =>
+      rest.name.toLowerCase().includes(props.searchTerm.toLowerCase()) )
+  } else if (props.show === 'done' && props.tagSearch) {
+    filteredRestaurants = props.doneDetails.filter(rest => {
+     for(let i=0; i< rest.tags.length; i++){
+       if(rest.tags[i].name.includes(props.tagSearch)){
+         return rest
+        }
+      }
+      })
+    } else if (props.show === 'wishlist' && props.tagSearch) {
+    filteredRestaurants = props.wishlistDetails.filter(rest => {
+     for(let i=0; i< rest.tags.length; i++){
+       if(rest.tags[i].name.includes(props.tagSearch)){
+         return rest
+         }
+       }
+      })
     } else if (props.tagSearch) {
       filteredRestaurants = props.restaurantsDetails.filter(rest => {
        for(let i=0; i< rest.tags.length; i++){
@@ -34,5 +50,6 @@ const UserRestaurants = (props) => {
       </div>
     )
   }
+
 
 export default UserRestaurants
