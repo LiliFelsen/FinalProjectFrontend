@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Button, Modal, Icon, Dropdown, Form, Radio, Grid } from 'semantic-ui-react'
+import { Input, Button, Modal, Icon, Dropdown, Form, Checkbox, Grid } from 'semantic-ui-react'
 import Autocomplete from 'react-google-autocomplete'
 
 class AddressSearchAndCreate extends Component {
@@ -148,6 +148,7 @@ class AddressSearchAndCreate extends Component {
     this.createUserRestaurant()
     this.createRestaurantTags()
     this.createTagsThenRestaurantTags()
+    this.setState({ currentRestaurant: {} })
     document.getElementById('autocomplete').value = ""
   }
 
@@ -168,7 +169,7 @@ class AddressSearchAndCreate extends Component {
             />
           </Input>
           <Modal
-            trigger={<Button onClick={this.handleOpen} icon='plus' color='white'/>}
+            trigger={<Button onClick={this.handleOpen} icon='plus' color='grey'/>}
             open={this.state.modalOpen}
             onClose={this.handleClose}
           >
@@ -181,8 +182,8 @@ class AddressSearchAndCreate extends Component {
                         <h2>{this.state.currentRestaurant.name}</h2>
                         <h4>{this.state.currentRestaurant.address}</h4>
                         <h4>{this.state.currentRestaurant.phone_number}</h4>
-                        <p>Have you been there? {this.state.visited === false ? ' No' : ' Yes'}</p>
-                        <Radio toggle onChange={this.handleVisited} />
+                        <p><Checkbox onChange={this.handleVisited} label='Have you been there?'/> &nbsp;
+                         {this.state.visited === false ? 'No' : 'Yes'}</p>
                         <p>Select existing tags:</p>
                         <Dropdown placeholder='Tags' fluid multiple selection options={tagOptions} onChange={this.handleSelectTag} />
                         <br/>

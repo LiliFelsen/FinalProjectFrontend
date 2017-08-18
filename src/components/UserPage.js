@@ -10,8 +10,7 @@ import AuthAdapter from '../Auth/authAdapter'
 class UserPage extends Component {
 
   state = {
-    currentUserId: '',
-    currentUsername: '',
+    currentUser: '',
     userRestaurants: [],
     doneRestaurants: [],
     wishlistRestaurants: [],
@@ -28,9 +27,9 @@ class UserPage extends Component {
     fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
       .then(restaurants => this.setState({
-        userRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId),
-        doneRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId && r.visited === true),
-        wishlistRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId && r.visited === false),
+        userRestaurants: restaurants.filter(r => r.user_id === this.state.currentUser.id),
+        doneRestaurants: restaurants.filter(r => r.user_id === this.state.currentUser.id && r.visited === true),
+        wishlistRestaurants: restaurants.filter(r => r.user_id === this.state.currentUser.id && r.visited === false),
       }))
       .then(() => this.fetchRestaurantsDetails())
   }
@@ -53,7 +52,7 @@ class UserPage extends Component {
 
   componentDidMount = () => {
     AuthAdapter.currentUser()
-      .then(user => this.setState({ currentUserId: user.id, currentUsername: user.username }))
+      .then(user => this.setState({ currentUser: user }))
       .then(() => this.fetchUserRestaurants())
   }
 
@@ -78,13 +77,13 @@ class UserPage extends Component {
   render(){
     return(
       <div id='user-page'>
-        <NavBar username={this.state.currentUsername} />
+        <NavBar username={this.state.currentUser.username} />
         <UserNavbar
           handleShow={this.handleShow}
           fetchRestaurants={this.fetchUserRestaurants}
           restaurantsDetails={this.state.restaurantsDetails}
           handleSearch={this.handleSearchByName}
-          currentUserId={this.state.currentUserId}
+          currentUser={this.state.currentUser}
         />
         <Grid centered style={{ margin: '3em 0' }}>
           <Grid.Row>
@@ -105,7 +104,7 @@ class UserPage extends Component {
               />
             </Grid.Column>
             <Grid.Column width={3}>
-              <FriendList />
+              <FriendList currentUserId={this.state.currentUser.id} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

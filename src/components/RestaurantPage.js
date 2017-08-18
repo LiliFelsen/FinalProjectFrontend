@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Button, Feed, Radio, Card } from 'semantic-ui-react'
+import { Grid, Button, Feed, Checkbox, Card } from 'semantic-ui-react'
 import NavBar from './NavBar'
 import RestaurantPageMap from './RestaurantPageMap'
 import RestaurantPageReviews from './RestaurantPageReviews'
@@ -107,7 +107,7 @@ class RestaurantPage extends Component {
     return(
       <div id='restaurant-page'>
         <NavBar username={this.state.currentUsername} />
-        <Grid container divided='vertically'>
+        <Grid container divided='vertically' style={{ margin: '4em 0 0 0' }}>
           <Grid.Row stretched columns={2} verticalAlign='middle'>
             <Grid.Column>
               <RestaurantPageMap restaurant={this.state.currentRestaurant} />
@@ -117,11 +117,21 @@ class RestaurantPage extends Component {
               {!this.state.visited ?
                 <Card fluid>
                   <Card.Content>
-                  Did you try that restaurant since you added it?
-                  <Radio toggle onChange={this.handleVisited} /><br/>
+                  <Checkbox onChange={this.handleVisited}
+                    checked={this.state.visited}
+                    label="Have you been here?"/><br/><br/>
+                  <Button fluid color='teal' className='button-colored-teal' size='tiny'>Wishlist</Button>
                   </Card.Content>
                 </Card>
-                : <Button color='red' className='button-colored-red' size='tiny'>Visited</Button> }
+                :
+                <Card fluid>
+                  <Card.Content>
+                    <Checkbox onChange={this.handleVisited}
+                      checked={this.state.visited}
+                      label="Have you been here?"/><br/><br/>
+                    <Button fluid color='red' className='button-colored-red' size='tiny'>Visited</Button>
+                  </Card.Content>
+                </Card> }
                 <br/>
               <AddReviewModal restaurant={this.state.currentRestaurant}
                 review={this.state.review}
