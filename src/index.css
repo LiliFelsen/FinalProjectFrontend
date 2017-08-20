@@ -19,6 +19,18 @@ body {
   background-color: #E94418!important
 }
 
+.restaurants-list {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  overflow-y: auto;
+}
+
+.restaurant-page {
+  position: absolute;
+  top: 4em; bottom: 3em; left: 0; right: 0;
+  overflow-y: auto;
+}
+
 #landing-page {
   background-image: url('./assets/katlyn-giberson-185277.jpg');
   width: 100%;

@@ -6,38 +6,6 @@ const UserRestaurants = (props) => {
 
     let filteredRestaurants = []
 
-    // let filterByName = () => {
-    //   props.restaurantsDetails.filter(rest =>
-    //     rest.name.toLowerCase().includes(props.searchTerm.toLowerCase()) )
-    // }
-    //
-    // let filterByTag = (arrayToFilter) => {
-    //   arrayToFilter.filter(rest => {
-    //    for(let i=0; i< rest.tags.length; i++){
-    //      if(rest.tags[i].name.includes(props.tagSearch)){
-    //        return rest
-    //       }
-    //     }
-    //   })
-    // }
-    //
-    // if (props.searchTerm) {
-    //   filteredRestaurants = filterByName()
-    // } else if (props.show === 'done' && props.tagSearch) {
-    //   filteredRestaurants = filterByTag(props.doneDetails)
-    // } else if (props.show === 'wishlist' && props.tagSearch) {
-    //   filteredRestaurants = filterByTag(props.wishlistDetails)
-    // } else if (props.tagSearch) {
-    //   filteredRestaurants = filterByTag(props.restaurantsDetails)
-    // } else if (props.show === 'done') {
-    //   filteredRestaurants = props.doneDetails
-    // } else if (props.show === 'wishlist') {
-    //   filteredRestaurants = props.wishlistDetails
-    // } else {
-    //   filteredRestaurants = props.restaurantsDetails
-    // }
-
-
     if (props.searchTerm) {
     filteredRestaurants = props.restaurantsDetails.filter(rest =>
       rest.name.toLowerCase().includes(props.searchTerm.toLowerCase()) )

@@ -18,7 +18,7 @@ class FiltersTags extends Component {
                 <br/>
                 <Input icon='tag' placeholder='Filter by tag' fluid onChange={this.props.handleSearch}/>
                 <br/>
-                <br/><br/>
+                <br/>
               </Card.Content>
             </Card>
           </Grid.Column>

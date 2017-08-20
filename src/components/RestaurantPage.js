@@ -90,7 +90,7 @@ class RestaurantPage extends Component {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        visited: true
+        visited: !this.state.visited
       })
     })
   }
@@ -107,7 +107,7 @@ class RestaurantPage extends Component {
     return(
       <div id='restaurant-page'>
         <NavBar username={this.state.currentUsername} />
-        <Grid container divided='vertically' style={{ margin: '4em 0 0 0' }}>
+        <Grid container divided='vertically' className='restaurant-page'>
           <Grid.Row stretched columns={2} verticalAlign='middle'>
             <Grid.Column>
               <RestaurantPageMap restaurant={this.state.currentRestaurant} />
@@ -120,7 +120,7 @@ class RestaurantPage extends Component {
                   <Checkbox onChange={this.handleVisited}
                     checked={this.state.visited}
                     label="Have you been here?"/><br/><br/>
-                  <Button fluid color='teal' className='button-colored-teal' size='tiny'>Wishlist</Button>
+                  <Button disabled fluid color='teal' className='button-colored-teal' size='tiny'>Wishlist</Button>
                   </Card.Content>
                 </Card>
                 :
@@ -129,7 +129,7 @@ class RestaurantPage extends Component {
                     <Checkbox onChange={this.handleVisited}
                       checked={this.state.visited}
                       label="Have you been here?"/><br/><br/>
-                    <Button fluid color='red' className='button-colored-red' size='tiny'>Visited</Button>
+                    <Button disabled fluid color='red' className='button-colored-red' size='tiny'>Visited</Button>
                   </Card.Content>
                 </Card> }
                 <br/>

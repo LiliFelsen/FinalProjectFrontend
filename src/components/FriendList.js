@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Card, Input, Icon, Form, Button, Modal, Header } from 'semantic-ui-react'
+import { Grid, Card, Input, Icon, Button, Modal, Header } from 'semantic-ui-react'
 
 class FriendList extends Component {
 
@@ -57,8 +57,7 @@ class FriendList extends Component {
 
 
   render(){
-    console.log('current user id from props:', this.props.currentUserId);
-    console.log('current user:', this.state.currentUser);
+    // console.log('current user:', this.state.currentUser);
     return(
       <div style={{ margin: '2em 0 0 0' }}>
         <Grid centered>
@@ -76,7 +75,7 @@ class FriendList extends Component {
                       {!this.state.addedFriend ?
                         <div style={{ margin: '0 5em' }}>
                           <br/><br/><br/>
-                          <center><h3>We don't have any user with that username.</h3></center>
+                          <center><h3>Oops... We don't have any user with that username.</h3></center>
                           <br/><br/>
                           <Button floated='right' color='black' onClick={this.handleClose}>Exit</Button>
                           <br/><br/><br/>
