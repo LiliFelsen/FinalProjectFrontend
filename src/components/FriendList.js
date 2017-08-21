@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Card, Input, Icon, Button, Modal, Header } from 'semantic-ui-react'
+import { Grid, Card, Input, Icon, Button } from 'semantic-ui-react'
 import AddFriendModal from './AddFriendModal'
 
 class FriendList extends Component {
@@ -51,16 +51,22 @@ class FriendList extends Component {
           <Grid.Column>
             <Card fluid  style={{ background: 'rgba(245, 243, 243, 0.85)' }}>
               <Card.Content>
-                <center><h3>Your friends:</h3></center>
+                <center>
+                  <h3>Your friends:</h3>
+                  {this.props.currentUser.id !== this.props.shownUserId ?
+                    <Button onClick={this.props.backToCurrentUser} className='button-colored-red' size='tiny'>Go back to your map</Button>
+                  : null}
+                </center>
                 <br/>
                   {this.props.currentUser ?
                     this.props.currentUser.friends.map(friend =>
-                      <p key={friend.id}>
+                      <p id={friend.id} key={friend.id} onClick={this.props.changeShownUser}>
                         <Icon name='user circle' size='big' color='teal' />
                         {friend.username}
                       </p>)
                   : null}
                   <br/>
+                  <center>
                   <Input id='friend-username' placeholder='Add friend by username' onChange={this.handleChange}/>
                   <AddFriendModal handleFriend={this.handleFriend}
                     modalOpen={this.state.modalOpen}
@@ -68,7 +74,7 @@ class FriendList extends Component {
                     addedFriend={this.state.addedFriend}
                     createFriendship={this.createFriendship}
                     />
-
+                  </center>
               </Card.Content>
             </Card>
           </Grid.Column>

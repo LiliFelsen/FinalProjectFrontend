@@ -12,6 +12,7 @@ class UserPage extends Component {
   state = {
     allUsers: [],
     currentUser: '',
+    shownUserId: '',
     userRestaurants: [],
     doneRestaurants: [],
     wishlistRestaurants: [],
@@ -28,9 +29,9 @@ class UserPage extends Component {
     fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
       .then(restaurants => this.setState({
-        userRestaurants: restaurants.filter(r => r.user_id === this.state.currentUser.id),
-        doneRestaurants: restaurants.filter(r => r.user_id === this.state.currentUser.id && r.visited === true),
-        wishlistRestaurants: restaurants.filter(r => r.user_id === this.state.currentUser.id && r.visited === false),
+        userRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId),
+        doneRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === true),
+        wishlistRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === false),
       }))
       .then(() => this.fetchRestaurantsDetails())
   }
@@ -56,7 +57,8 @@ class UserPage extends Component {
       .then(resp => resp.json())
       .then(users => this.setState({
         allUsers: users,
-        currentUser: users.filter(user => user.id === currentUser.id)[0]
+        currentUser: users.filter(user => user.id === currentUser.id)[0],
+        shownUserId: users.filter(user => user.id === currentUser.id)[0].id
       }))
   }
 
@@ -82,6 +84,16 @@ class UserPage extends Component {
 
   handleClick = (event) => {
     this.setState({ show: event.target.value })
+  }
+
+  changeShownUser = (event) => {
+    this.setState({ shownUserId: parseInt(event.target.id) },
+    () => this.fetchUserRestaurants())
+  }
+
+  backToCurrentUser = () => {
+    this.setState({ shownUserId: this.state.currentUser.id },
+    () => this.fetchUserRestaurants())
   }
 
   render(){
@@ -115,8 +127,11 @@ class UserPage extends Component {
             </Grid.Column>
             <Grid.Column width={3}>
               <FriendList currentUser={this.state.currentUser}
+                shownUserId={this.state.shownUserId}
                 allUsers={this.state.allUsers}
-                fetchUsers={this.fetchUsers} />
+                fetchUsers={this.fetchUsers}
+                changeShownUser={this.changeShownUser}
+                backToCurrentUser={this.backToCurrentUser} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
