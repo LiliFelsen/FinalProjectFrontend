@@ -10,6 +10,7 @@ import AuthAdapter from '../Auth/authAdapter'
 class UserPage extends Component {
 
   state = {
+    allUsers: [],
     currentUser: '',
     userRestaurants: [],
     doneRestaurants: [],
@@ -50,9 +51,18 @@ class UserPage extends Component {
     )
   }
 
+  fetchUsers = (currentUser) => {
+    fetch(process.env.REACT_APP_API + '/users')
+      .then(resp => resp.json())
+      .then(users => this.setState({
+        allUsers: users,
+        currentUser: users.filter(user => user.id === currentUser.id)[0]
+      }))
+  }
+
   componentDidMount = () => {
     AuthAdapter.currentUser()
-      .then(user => this.setState({ currentUser: user }))
+      .then(currentUser => this.fetchUsers(currentUser))
       .then(() => this.fetchUserRestaurants())
   }
 
@@ -104,7 +114,9 @@ class UserPage extends Component {
               />
             </Grid.Column>
             <Grid.Column width={3}>
-              <FriendList currentUserId={this.state.currentUser.id} />
+              <FriendList currentUser={this.state.currentUser}
+                allUsers={this.state.allUsers}
+                fetchUsers={this.fetchUsers} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
