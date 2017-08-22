@@ -44,6 +44,8 @@ class UserPage extends Component {
   }
 
   render(){
+    console.log('from user page render, currentUser:', this.props.currentUser);
+    console.log('from user page render, shownUserId:', this.props.shownUserId);
     return(
       <div id='user-page'>
         <NavBar username={this.props.currentUser.username} />
