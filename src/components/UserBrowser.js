@@ -37,25 +37,22 @@ class UserBrowser extends Component {
   fetchUserRestaurants = () => {
     fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
-      .then(restaurants => {
-        this.setState({
+      .then(restaurants => this.setState({
         userRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId),
         doneRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === true),
         wishlistRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === false),
-      })})
+      }))
       .then(() => this.fetchRestaurantsDetails())
   }
 
   fetchUsers = (currentUser) => {
     fetch(process.env.REACT_APP_API + '/users')
       .then(resp => resp.json())
-      .then(users => {
-        console.log('response:', users, currentUser)
-        this.setState({
+      .then(users => this.setState({
         allUsers: users,
         currentUser: users.filter(user => user.id === currentUser.id)[0],
         shownUserId: users.filter(user => user.id === currentUser.id)[0].id
-      })})
+      }))
   }
 
   componentDidMount = () => {
