@@ -14,7 +14,7 @@ export default class AuthAdapter {
     return fetch(`${baseUrl}/signup`, {
       method: 'POST',
       headers: headers(),
-      body: JSON.stringify({user:{username: signUpParams.username, password:signUpParams.password}})
+      body: JSON.stringify({user:{username: signUpParams.username, email: signUpParams.email, password:signUpParams.password}})
     }).then(resp => resp.json())
   }
 

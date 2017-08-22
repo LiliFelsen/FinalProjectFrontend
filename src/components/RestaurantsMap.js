@@ -6,9 +6,9 @@ import RestaurantMapPoint from './RestaurantMapPoint'
 class RestaurantsMap extends Component {
   render(){
     return(
-      <Container style={{ width: '100%', height: '550px' }}>
+      <Container className='restaurants-map' style={{ width: '100%' }}>
         <GoogleMapReact
-          center={{lat: 40.7510467, lng: -73.9754778}}
+          center={{lat: 40.7236346, lng: -73.9639765}}
           defaultZoom={12}
         >
           {this.props.restaurantsDetails.map(rest =>
@@ -18,7 +18,8 @@ class RestaurantsMap extends Component {
               lng={rest.lng}
               text={rest.name}
               linkTo={`/my_places/${rest.id}`}
-              icon='map pin'
+              icon='marker'
+              size='big'
             />
           )}
         </GoogleMapReact>

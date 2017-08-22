@@ -4,35 +4,30 @@ import RestaurantsList from './RestaurantsList'
 
 const UserRestaurants = (props) => {
 
-  let filteredRestaurants = []
-
-  if (props.searchTerm) {
-    filteredRestaurants = props.restaurantsDetails.filter(rest =>
+  let filterByName = () => {
+    return props.restaurantsDetails.filter(rest =>
       rest.name.toLowerCase().includes(props.searchTerm.toLowerCase()) )
-  } else if (props.show === 'done' && props.tagSearch) {
-    filteredRestaurants = props.doneDetails.filter(rest => {
-     for(let i=0; i< rest.tags.length; i++){
-       if(rest.tags[i].name.includes(props.tagSearch)){
-         return rest
+    }
+
+  let filterByTag = (arrayToFilter) => {
+      return arrayToFilter.filter(rest => {
+        for(let i=0; i< rest.tags.length; i++){
+          if(rest.tags[i].name.includes(props.tagSearch)){
+            return rest
+          }
         }
-      }
       })
+    }
+    let filteredRestaurants = []
+
+    if (props.searchTerm) {
+      filteredRestaurants = filterByName()
+    } else if (props.show === 'done' && props.tagSearch) {
+      filteredRestaurants = filterByTag(props.doneDetails)
     } else if (props.show === 'wishlist' && props.tagSearch) {
-    filteredRestaurants = props.wishlistDetails.filter(rest => {
-     for(let i=0; i< rest.tags.length; i++){
-       if(rest.tags[i].name.includes(props.tagSearch)){
-         return rest
-         }
-       }
-      })
+      filteredRestaurants = filterByTag(props.wishlistDetails)
     } else if (props.tagSearch) {
-      filteredRestaurants = props.restaurantsDetails.filter(rest => {
-       for(let i=0; i< rest.tags.length; i++){
-         if(rest.tags[i].name.includes(props.tagSearch)){
-           return rest
-         }
-       }
-      })
+      filteredRestaurants = filterByTag(props.restaurantsDetails)
     } else if (props.show === 'done') {
       filteredRestaurants = props.doneDetails
     } else if (props.show === 'wishlist') {

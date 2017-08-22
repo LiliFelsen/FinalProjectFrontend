@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const RestaurantMapPoint = (props) => {
   return(
     <div>
-      <Link to={props.linkTo}><Icon name={`${props.icon}`} size='big'></Icon></Link>
+      <Link to={props.linkTo}><Icon name={`${props.icon}`} size={`${props.size}`}></Icon></Link>
     </div>
   )
 }

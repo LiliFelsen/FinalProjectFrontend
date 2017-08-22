@@ -10,51 +10,14 @@ import AuthAdapter from '../Auth/authAdapter'
 class UserPage extends Component {
 
   state = {
-    currentUserId: '',
-    currentUsername: '',
-    userRestaurants: [],
-    doneRestaurants: [],
-    wishlistRestaurants: [],
-    restaurantsDetails: [],
-    doneDetails: [],
-    wishlistDetails: [],
     mapVisible: true,
     searchTerm: '',
     tagSearch: '',
     show: ''
   }
 
-  fetchUserRestaurants = () => {
-    fetch(process.env.REACT_APP_API + '/user_restaurants')
-      .then(resp => resp.json())
-      .then(restaurants => this.setState({
-        userRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId),
-        doneRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId && r.visited === true),
-        wishlistRestaurants: restaurants.filter(r => r.user_id === this.state.currentUserId && r.visited === false),
-      }))
-      .then(() => this.fetchRestaurantsDetails())
-  }
-
-  fetchRestaurantsDetails = () => {
-    fetch(process.env.REACT_APP_API + '/restaurants')
-      .then(resp => resp.json())
-      .then(restaurants => {
-        this.setState({
-          restaurantsDetails: this.state.userRestaurants.map(rest =>
-          restaurants.filter(r => r.id === rest.restaurant_id)[0]),
-          doneDetails:  this.state.doneRestaurants.map(rest =>
-          restaurants.filter(r => r.id === rest.restaurant_id)[0]),
-          wishlistDetails:  this.state.wishlistRestaurants.map(rest =>
-          restaurants.filter(r => r.id === rest.restaurant_id)[0])
-        })
-      }
-    )
-  }
-
   componentDidMount = () => {
-    AuthAdapter.currentUser()
-      .then(user => this.setState({ currentUserId: user.id, currentUsername: user.username }))
-      .then(() => this.fetchUserRestaurants())
+    this.props.fetchUserRestaurants()
   }
 
   handleShow = () => {
@@ -78,15 +41,14 @@ class UserPage extends Component {
   render(){
     return(
       <div id='user-page'>
-        <NavBar username={this.state.currentUsername} />
+        <NavBar username={this.props.currentUser.username} />
         <UserNavbar
           handleShow={this.handleShow}
-          fetchRestaurants={this.fetchUserRestaurants}
-          restaurantsDetails={this.state.restaurantsDetails}
+          fetchRestaurants={this.props.fetchUserRestaurants}
           handleSearch={this.handleSearchByName}
-          currentUserId={this.state.currentUserId}
+          currentUser={this.props.currentUser}
         />
-        <Grid centered style={{ margin: '3em 0' }}>
+        <Grid centered>
           <Grid.Row>
             <Grid.Column width={3}>
               <FiltersTags
@@ -96,16 +58,21 @@ class UserPage extends Component {
             <Grid.Column width={8}>
               <UserRestaurants
                 mapVisible={this.state.mapVisible}
-                restaurantsDetails={this.state.restaurantsDetails}
-                doneDetails={this.state.doneDetails}
-                wishlistDetails={this.state.wishlistDetails}
+                restaurantsDetails={this.props.restaurantsDetails}
+                doneDetails={this.props.doneDetails}
+                wishlistDetails={this.props.wishlistDetails}
                 searchTerm={this.state.searchTerm}
                 tagSearch={this.state.tagSearch}
                 show={this.state.show}
               />
             </Grid.Column>
             <Grid.Column width={3}>
-              <FriendList />
+              <FriendList currentUser={this.props.currentUser}
+                shownUserId={this.props.shownUserId}
+                allUsers={this.props.allUsers}
+                fetchUsers={this.props.fetchUsers}
+                changeShownUser={this.props.changeShownUser}
+                backToCurrentUser={this.props.backToCurrentUser} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

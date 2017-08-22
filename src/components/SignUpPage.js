@@ -38,6 +38,10 @@ class SignUpPage extends Component {
                     <input name='username' placeholder='Username' onChange={this.handleChange} />
                   </Form.Field>
                   <Form.Field>
+                    <label>Your email</label>
+                    <input type='email' name='email' placeholder='Email' onChange={this.handleChange} />
+                  </Form.Field>
+                  <Form.Field>
                     <label>Your password</label>
                     <input type='password' name='password' placeholder='Password' onChange={this.handleChange} />
                   </Form.Field>
