@@ -50,8 +50,9 @@ class UserBrowser extends Component {
           userRestaurants: userRestaurants,
           doneRestaurants: doneRestaurants,
           wishlistRestaurants: wishlistRestaurants
-        })})
-      .then((userRestaurants, doneRestaurants, wishlistRestaurants) => this.fetchRestaurantsDetails(userRestaurants, doneRestaurants, wishlistRestaurants))
+        })
+        this.fetchRestaurantsDetails(userRestaurants, doneRestaurants, wishlistRestaurants)
+      })
   }
 
   fetchUsers = (currentUser) => {
