@@ -55,11 +55,11 @@ class UserBrowser extends Component {
       }))
   }
 
-  // componentDidMount = () => {
-  //   AuthAdapter.currentUser()
-  //     .then(currentUser => this.fetchUsers(currentUser))
-  //     .then(() => this.fetchUserRestaurants())
-  // }
+  componentDidMount = () => {
+    AuthAdapter.currentUser()
+      .then(currentUser => this.fetchUsers(currentUser))
+      .then(() => this.fetchUserRestaurants())
+  }
 
   changeShownUser = (event) => {
     this.setState({ shownUserId: parseInt(event.target.id) },

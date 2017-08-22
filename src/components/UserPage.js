@@ -17,19 +17,19 @@ class UserPage extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    AuthAdapter.currentUser()
-    .then(currentUser => nextProps.fetchUsers(currentUser))
-    .then(() => nextProps.fetchUserRestaurants())
+    this.setState({
+      restaurantsDetails: nextProps.restaurantsDetails
+    })
   }
-
-  componentDidMount = () => {
-    AuthAdapter.currentUser()
-      .then(currentUser => this.props.fetchUsers(currentUser))
-      .then(() => this.props.fetchUserRestaurants())
-  }
+  //
   // componentDidMount = () => {
-  //   this.props.fetchUserRestaurants()
+  //   AuthAdapter.currentUser()
+  //     .then(currentUser => this.props.fetchUsers(currentUser))
+  //     .then(() => this.props.fetchUserRestaurants())
   // }
+  componentDidMount = () => {
+    this.props.fetchUserRestaurants()
+  }
 
   handleShow = () => {
     this.setState({
