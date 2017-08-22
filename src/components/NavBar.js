@@ -10,7 +10,7 @@ const NavBar = ({ username }) => {
         <i style={{ color: '#14DBD9' }}>Hi, {username}!</i>
       </Menu.Item>
       <Menu.Item>
-        <NavLink to='/my_places'>See all your places</NavLink>
+        <NavLink to='/my_places'>See all places</NavLink>
       </Menu.Item>
       <Menu.Item position='right'>
         <NavLink to="/logout">Logout</NavLink>

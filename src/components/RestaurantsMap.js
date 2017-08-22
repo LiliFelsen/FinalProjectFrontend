@@ -6,7 +6,7 @@ import RestaurantMapPoint from './RestaurantMapPoint'
 class RestaurantsMap extends Component {
   render(){
     return(
-      <Container style={{ width: '100%', height: '500px' }}>
+      <Container className='restaurants-map' style={{ width: '100%' }}>
         <GoogleMapReact
           center={{lat: 40.7236346, lng: -73.9639765}}
           defaultZoom={12}

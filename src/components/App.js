@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import LandingPage from './LandingPage'
 import LoginPage from './LoginPage'
 import SignUpPage from './SignUpPage'
-import UserPage from './UserPage'
-import RestaurantPage from './RestaurantPage'
+import UserBrowser from './UserBrowser'
 import Auth from '../Auth/authorize'
 import AuthAdapter from '../Auth/authAdapter'
 
@@ -81,11 +80,9 @@ class App extends Component {
 
           <Route path="/logout" render={()=> {
             this.handleLogout()
-            return (<Redirect to="/home" />)}} />
+            return (<Redirect to="/" />)}} />
 
-          <Route exact path="/my_places" component={Auth(UserPage)} />
-
-          <Route path="/my_places/:id" component={Auth(RestaurantPage)} />
+          <Route path="/my_places" component={Auth(UserBrowser)} />
         </div>
       </Router>
     )

@@ -54,7 +54,7 @@ class FriendList extends Component {
                 <center>
                   <h3>Your friends:</h3>
                   {this.props.currentUser.id !== this.props.shownUserId ?
-                    <Button onClick={this.props.backToCurrentUser} className='button-colored-red' size='tiny'>Go back to your map</Button>
+                    <Button onClick={this.props.backToCurrentUser} className='button-colored-red' size='tiny'>Go back to your places.</Button>
                   : null}
                 </center>
                 <br/>

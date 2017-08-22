@@ -2,7 +2,7 @@ import React from 'react'
 import moment from "moment"
 import { Feed, Icon, Rating } from 'semantic-ui-react'
 
-const RestaurantPageReviews = ({ review, deleteReview }) => {
+const RestaurantPageReviews = ({ review, deleteReview, currentUser }) => {
 
   const timeAgo = moment(review.created_at).fromNow()
 
@@ -11,9 +11,12 @@ const RestaurantPageReviews = ({ review, deleteReview }) => {
       <Feed.Label><Icon name='comment' color='black'/></Feed.Label>
       <Feed.Content>
         <Feed.Summary>
-          " {review.notes} "
+          {review.user.id === currentUser.id ? 'You ' : review.user.username + ' ' }
+           said " {review.notes} "
           <Feed.Date>{timeAgo}</Feed.Date>
-          <Icon id={review.id} name='remove' style={{ float: 'right' }} onClick={deleteReview}/>
+          {review.user.id === currentUser.id ?
+            <Icon id={review.id} name='remove' style={{ float: 'right' }} onClick={deleteReview}/>
+            : null }
         </Feed.Summary>
         <Feed.Meta>
           <Rating icon='star' defaultRating={review.rating} maxRating={10} disabled size='mini' />
