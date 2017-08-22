@@ -49,7 +49,7 @@ class FriendList extends Component {
       <div style={{ margin: '2em 0 0 0' }}>
         <Grid centered>
           <Grid.Column>
-            <Card fluid  style={{ background: 'rgba(245, 243, 243, 0.85)' }}>
+            <Card fluid className='card-opacity'>
               <Card.Content>
                 <center>
                   <h3>Your friends:</h3>
@@ -60,9 +60,11 @@ class FriendList extends Component {
                 <br/>
                   {this.props.currentUser ?
                     this.props.currentUser.friends.map(friend =>
-                      <p id={friend.id} key={friend.id} onClick={this.props.changeShownUser}>
+                      <p>
                         <Icon name='user circle' size='big' color='teal' />
-                        {friend.username}
+                        <span id={friend.id} key={friend.id} className='friend' onClick={this.props.changeShownUser}>
+                          {friend.username}
+                        </span>
                       </p>)
                   : null}
                   <br/>

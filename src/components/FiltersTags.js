@@ -7,7 +7,7 @@ class FiltersTags extends Component {
       <div style={{ margin: '2em 0' }}>
         <Grid centered>
           <Grid.Column textAlign='center'>
-            <Card fluid style={{ background: 'rgba(245, 243, 243, 0.85)' }}>
+            <Card fluid className='card-opacity'>
               <Card.Content>
                 <h3>Filter your places:</h3>
                 <br/><br/>

@@ -15,7 +15,7 @@ const RestaurantPageReviews = ({ review, deleteReview, currentUser }) => {
            said " {review.notes} "
           <Feed.Date>{timeAgo}</Feed.Date>
           {review.user.id === currentUser.id ?
-            <Icon id={review.id} name='remove' style={{ float: 'right' }} onClick={deleteReview}/>
+            <Icon id={review.id} name='remove' className='delete-review' onClick={deleteReview}/>
             : null }
         </Feed.Summary>
         <Feed.Meta>

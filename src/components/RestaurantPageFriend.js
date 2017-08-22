@@ -38,7 +38,7 @@ class RestaurantPage extends Component {
           </Grid.Row>
           <Grid.Row centered columns={1}>
             <Grid.Column verticalAlign='middle' width={8}>
-              <Feed style={{ background: 'rgba(245, 243, 243, 0.90)' }}>
+              <Feed className='card-opacity'>
                 {this.props.restaurantReviews.reverse().map(r =>
                   <RestaurantPageReviews key={r.id}
                     review={r}

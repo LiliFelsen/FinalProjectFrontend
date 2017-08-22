@@ -39,6 +39,19 @@ body {
   overflow-y: auto;
 }
 
+.delete-review {
+  float: right;
+  cursor: pointer;
+}
+
+.friend {
+  cursor: pointer;
+}
+
+.card-opacity {
+  background: rgba(245, 243, 243, 0.85)!important
+}
+
 #landing-page {
   background-image: url('./assets/katlyn-giberson-185277.jpg');
   width: 100%;
