@@ -46,4 +46,5 @@ const UserRestaurants = (props) => {
     )
   }
 
+
 export default UserRestaurants
