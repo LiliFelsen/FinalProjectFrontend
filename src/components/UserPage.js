@@ -16,6 +16,12 @@ class UserPage extends Component {
     show: ''
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    AuthAdapter.currentUser()
+    .then(currentUser => nextProps.fetchUsers(currentUser))
+    .then(() => nextProps.fetchUserRestaurants())
+  }
+
   componentDidMount = () => {
     AuthAdapter.currentUser()
       .then(currentUser => this.props.fetchUsers(currentUser))
