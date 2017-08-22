@@ -10,17 +10,10 @@ import AuthAdapter from '../Auth/authAdapter'
 class UserPage extends Component {
 
   state = {
-    restaurantsDetails: [],
     mapVisible: true,
     searchTerm: '',
     tagSearch: '',
     show: ''
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    this.setState({
-      restaurantsDetails: nextProps.restaurantsDetails
-    })
   }
 
   componentDidMount = () => {

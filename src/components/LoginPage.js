@@ -23,7 +23,7 @@ class LoginPage extends Component {
       <div id='login-sign-up'>
         <Grid centered style={{ margin: '12em 0' }}>
           <Grid.Column computer={6} largeScreen={5} >
-            <Card fluid textAlign='center' style={{ background: 'rgba(245, 243, 243, 0.90)' }}>
+            <Card fluid style={{ background: 'rgba(245, 243, 243, 0.90)' }}>
               <Card.Content>
                 <br/>
                 <center>
