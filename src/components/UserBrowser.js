@@ -50,6 +50,7 @@ class UserBrowser extends Component {
         let userRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId)
         let doneRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === true)
         let wishlistRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === false)
+        console.log('response from userRestaurants2:', userRestaurants, doneRestaurants, wishlistRestaurants)
         this.setState({
           userRestaurants: userRestaurants,
           doneRestaurants: doneRestaurants,
@@ -63,7 +64,7 @@ class UserBrowser extends Component {
     fetch(process.env.REACT_APP_API + '/users')
       .then(resp => resp.json())
       .then(users => {
-        console.log('response from users:', users);
+        console.log('response from users:', users, currentUser);
         this.setState({
         allUsers: users,
         currentUser: users.filter(user => user.id === currentUser.id)[0],
