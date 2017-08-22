@@ -34,8 +34,10 @@ const UserRestaurants = (props) => {
       filteredRestaurants = props.wishlistDetails
     } else {
       filteredRestaurants = props.restaurantsDetails
+      console.log('inside else:', props.restaurantsDetails);
     }
 
+    console.log(filteredRestaurants)
     return(
       <div>
         {props.mapVisible ?
