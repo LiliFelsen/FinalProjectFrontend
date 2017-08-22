@@ -18,6 +18,22 @@ class UserBrowser extends Component {
     wishlistDetails: []
   }
 
+  fetchRestaurantsDetails = () => {
+    fetch(process.env.REACT_APP_API + '/restaurants')
+    .then(resp => resp.json())
+    .then(restaurants => {
+      this.setState({
+        restaurantsDetails: this.state.userRestaurants.map(rest =>
+          restaurants.filter(r => r.id === rest.restaurant_id)[0]),
+          doneDetails:  this.state.doneRestaurants.map(rest =>
+            restaurants.filter(r => r.id === rest.restaurant_id)[0]),
+            wishlistDetails:  this.state.wishlistRestaurants.map(rest =>
+              restaurants.filter(r => r.id === rest.restaurant_id)[0])
+            })
+          }
+        )
+      }
+
   fetchUserRestaurants = () => {
     fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
@@ -29,21 +45,6 @@ class UserBrowser extends Component {
       .then(() => this.fetchRestaurantsDetails())
   }
 
-  fetchRestaurantsDetails = () => {
-    fetch(process.env.REACT_APP_API + '/restaurants')
-      .then(resp => resp.json())
-      .then(restaurants => {
-        this.setState({
-          restaurantsDetails: this.state.userRestaurants.map(rest =>
-          restaurants.filter(r => r.id === rest.restaurant_id)[0]),
-          doneDetails:  this.state.doneRestaurants.map(rest =>
-          restaurants.filter(r => r.id === rest.restaurant_id)[0]),
-          wishlistDetails:  this.state.wishlistRestaurants.map(rest =>
-          restaurants.filter(r => r.id === rest.restaurant_id)[0])
-        })
-      }
-    )
-  }
 
   fetchUsers = (currentUser) => {
     fetch(process.env.REACT_APP_API + '/users')
