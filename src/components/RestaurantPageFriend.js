@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Grid, Button, Feed, Checkbox, Card } from 'semantic-ui-react'
+import { Grid, Button, Feed, Card } from 'semantic-ui-react'
 import NavBar from './NavBar'
 import RestaurantPageMap from './RestaurantPageMap'
 import RestaurantPageReviews from './RestaurantPageReviews'
 import RestaurantDetailledCard from './RestaurantDetailledCard'
 
 class RestaurantPage extends Component {
-  
+
   componentDidMount = () => {
     this.props.fetchData()
   }

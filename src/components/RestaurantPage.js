@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Grid, Button, Feed, Checkbox, Card } from 'semantic-ui-react'
 import RestaurantPageFriend from './RestaurantPageFriend'
 import RestaurantPageUser from './RestaurantPageUser'
 

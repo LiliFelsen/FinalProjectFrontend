@@ -18,31 +18,40 @@ class UserBrowser extends Component {
     wishlistDetails: []
   }
 
-  fetchRestaurantsDetails = () => {
+  setRestaurantData = (restaurants, userRestaurants, doneRestaurants, wishlistRestaurants) => {
+    let restaurantsDetails = userRestaurants.map(rest =>
+      restaurants.filter(r => r.id === rest.restaurant_id)[0])
+    let doneDetails = doneRestaurants.map(rest =>
+      restaurants.filter(r => r.id === rest.restaurant_id)[0])
+    let wishlistDetails = wishlistRestaurants.map(rest =>
+      restaurants.filter(r => r.id === rest.restaurant_id)[0])
+
+    this.setState({
+      restaurantsDetails: restaurantsDetails,
+      doneDetails: doneDetails,
+      wishlistDetails: wishlistDetails
+    })
+  }
+
+  fetchRestaurantsDetails = (userRestaurants, doneRestaurants, wishlistRestaurants) => {
     fetch(process.env.REACT_APP_API + '/restaurants')
     .then(resp => resp.json())
-    .then(restaurants => {
-      this.setState({
-        restaurantsDetails: this.state.userRestaurants.map(rest =>
-          restaurants.filter(r => r.id === rest.restaurant_id)[0]),
-          doneDetails:  this.state.doneRestaurants.map(rest =>
-            restaurants.filter(r => r.id === rest.restaurant_id)[0]),
-            wishlistDetails:  this.state.wishlistRestaurants.map(rest =>
-              restaurants.filter(r => r.id === rest.restaurant_id)[0])
-            })
-          }
-        )
-      }
+    .then(restaurants => this.setRestaurantData(restaurants, userRestaurants, doneRestaurants, wishlistRestaurants))
+  }
 
   fetchUserRestaurants = () => {
     fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
-      .then(restaurants => this.setState({
-        userRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId),
-        doneRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === true),
-        wishlistRestaurants: restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === false),
-      }))
-      .then(() => this.fetchRestaurantsDetails())
+      .then(restaurants => {
+        let userRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId)
+        let doneRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === true)
+        let wishlistRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === false)
+        this.setState({
+          userRestaurants: userRestaurants,
+          doneRestaurants: doneRestaurants,
+          wishlistRestaurants: wishlistRestaurants
+        })})
+      .then((userRestaurants, doneRestaurants, wishlistRestaurants) => this.fetchRestaurantsDetails(userRestaurants, doneRestaurants, wishlistRestaurants))
   }
 
   fetchUsers = (currentUser) => {
@@ -62,7 +71,7 @@ class UserBrowser extends Component {
   }
 
   changeShownUser = (event) => {
-    this.setState({ shownUserId: parseInt(event.target.id) },
+    this.setState({ shownUserId: parseInt(event.target.id, 10) },
     () => this.fetchUserRestaurants())
   }
 

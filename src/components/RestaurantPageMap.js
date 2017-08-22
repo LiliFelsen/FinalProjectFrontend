@@ -4,9 +4,6 @@ import { Container } from 'semantic-ui-react'
 import RestaurantMapPoint from './RestaurantMapPoint'
 
 class RestaurantPageMap extends Component {
-  constructor(props){
-    super(props)
-  }
 
   render(){
     return(
