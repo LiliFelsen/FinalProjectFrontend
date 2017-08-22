@@ -34,10 +34,6 @@ class RestaurantPage extends Component {
       .then(reviews => this.setState({
         restaurantReviews: reviews.filter(r => r.restaurant_id === this.state.currentRestaurant.id)
       }))
-      // .then(reviews => this.setState({
-      //   restaurantReviews: reviews.filter(r =>
-      //     r.user_id === this.props.currentUser.id && r.restaurant_id === this.state.currentRestaurant.id)
-      // }))
   }
 
   fetchData = () => {

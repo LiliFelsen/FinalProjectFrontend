@@ -45,7 +45,6 @@ class UserBrowser extends Component {
       .then(() => this.fetchRestaurantsDetails())
   }
 
-
   fetchUsers = (currentUser) => {
     fetch(process.env.REACT_APP_API + '/users')
       .then(resp => resp.json())
@@ -56,11 +55,11 @@ class UserBrowser extends Component {
       }))
   }
 
-  componentDidMount = () => {
-    AuthAdapter.currentUser()
-      .then(currentUser => this.fetchUsers(currentUser))
-      .then(() => this.fetchUserRestaurants())
-  }
+  // componentDidMount = () => {
+  //   AuthAdapter.currentUser()
+  //     .then(currentUser => this.fetchUsers(currentUser))
+  //     .then(() => this.fetchUserRestaurants())
+  // }
 
   changeShownUser = (event) => {
     this.setState({ shownUserId: parseInt(event.target.id) },
@@ -80,9 +79,9 @@ class UserBrowser extends Component {
                     currentUser={this.state.currentUser}
                     shownUserId={this.state.shownUserId}
                     fetchUsers={this.fetchUsers}
+                    fetchUserRestaurants={this.fetchUserRestaurants}
                     changeShownUser={this.changeShownUser}
                     backToCurrentUser={this.backToCurrentUser}
-                    fetchUserRestaurants={this.fetchUserRestaurants}
                     restaurantsDetails={this.state.restaurantsDetails}
                     doneDetails={this.state.doneDetails}
                     wishlistDetails={this.state.wishlistDetails}

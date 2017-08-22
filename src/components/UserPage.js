@@ -17,8 +17,13 @@ class UserPage extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchUserRestaurants()
+    AuthAdapter.currentUser()
+      .then(currentUser => this.props.fetchUsers(currentUser))
+      .then(() => this.props.fetchUserRestaurants())
   }
+  // componentDidMount = () => {
+  //   this.props.fetchUserRestaurants()
+  // }
 
   handleShow = () => {
     this.setState({

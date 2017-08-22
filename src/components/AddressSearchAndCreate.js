@@ -41,7 +41,6 @@ class AddressSearchAndCreate extends Component {
   }
 
   handleSelectedRestaurant = (place) => {
-    console.log(place);
     this.setState({ currentPlaceId: place.place_id })
     let restaurant = {
       placeId: place.place_id,
