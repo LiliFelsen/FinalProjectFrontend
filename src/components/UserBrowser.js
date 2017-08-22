@@ -36,13 +36,17 @@ class UserBrowser extends Component {
   fetchRestaurantsDetails = (userRestaurants, doneRestaurants, wishlistRestaurants) => {
     fetch(process.env.REACT_APP_API + '/restaurants')
     .then(resp => resp.json())
-    .then(restaurants => this.setRestaurantData(restaurants, userRestaurants, doneRestaurants, wishlistRestaurants))
+    .then(restaurants => {
+      console.log('response from restaurantsDetails:', restaurants);
+      this.setRestaurantData(restaurants, userRestaurants, doneRestaurants, wishlistRestaurants)
+    })
   }
 
   fetchUserRestaurants = () => {
     fetch(process.env.REACT_APP_API + '/user_restaurants')
       .then(resp => resp.json())
       .then(restaurants => {
+        console.log('response from userRestaurants:', restaurants);
         let userRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId)
         let doneRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === true)
         let wishlistRestaurants = restaurants.filter(r => r.user_id === this.state.shownUserId && r.visited === false)
@@ -58,11 +62,13 @@ class UserBrowser extends Component {
   fetchUsers = (currentUser) => {
     fetch(process.env.REACT_APP_API + '/users')
       .then(resp => resp.json())
-      .then(users => this.setState({
+      .then(users => {
+        console.log('response from users:', users);
+        this.setState({
         allUsers: users,
         currentUser: users.filter(user => user.id === currentUser.id)[0],
         shownUserId: users.filter(user => user.id === currentUser.id)[0].id
-      }))
+      })})
   }
 
   componentDidMount = () => {
