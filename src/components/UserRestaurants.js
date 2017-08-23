@@ -36,7 +36,6 @@ const UserRestaurants = (props) => {
       filteredRestaurants = props.restaurantsDetails
     }
 
-    // console.log('from userRestaurants', props.shownUserId)
     return(
       <div>
         {props.mapVisible ?

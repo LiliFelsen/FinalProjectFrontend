@@ -93,7 +93,7 @@ class AddressSearchAndCreate extends Component {
         visited: this.state.visited
       })
     })
-      .then(() => this.props.fetchRestaurants())
+      .then(() => this.props.fetchData())
   }
 
   createRestaurantTags = () => {
@@ -189,7 +189,7 @@ class AddressSearchAndCreate extends Component {
                         <Dropdown placeholder='Tags' fluid multiple selection options={tagOptions} onChange={this.handleSelectTag} />
                         <br/>
                         <p>and/or create new ones:</p>
-                        <ul>{this.state.newTags.map(tag => <li key={tag.id}>{tag}</li>)}</ul>
+                        <ul>{this.state.newTags.map(tag => <li>{tag}</li>)}</ul>
                         <Form onSubmit={this.handleNewTag}>
                           <Form.Field id='tag' placeholder='New tag name' control={Input} onChange={this.handleTagInput} />
                           <Button type='submit'><Icon name='plus' /></Button>

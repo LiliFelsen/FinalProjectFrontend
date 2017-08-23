@@ -9,7 +9,7 @@ const UserNavbar = (props) => {
     <Grid style={{ margin: '0 2em 0 0' }}>
       <Grid.Row columns={3}>
         <Grid.Column width={6} textAlign='right' >
-          <AddressSearchAndCreate fetchRestaurants={props.fetchRestaurants}
+          <AddressSearchAndCreate fetchData={props.fetchData}
             currentUserId={props.currentUser.id}/>
         </Grid.Column>
         <Grid.Column width={4} textAlign='center' >

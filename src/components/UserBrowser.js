@@ -77,7 +77,7 @@ class UserBrowser extends Component {
       .then(resp => resp.json())
       .then(users => {
         let shownUser = users.filter(user => user.id === shownUserId)[0]
-        // console.log('from fetch data:', shownUser)
+        console.log('from fetch data:', shownUser)
         if (shownUser) {
           let doneRestaurants = shownUser.user_restaurants.filter(rest => rest.visited === true)
           let wishlistRestaurants = shownUser.user_restaurants.filter(rest => rest.visited === false)

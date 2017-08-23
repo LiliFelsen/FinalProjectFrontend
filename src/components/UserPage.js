@@ -48,6 +48,7 @@ class UserPage extends Component {
           fetchRestaurants={this.props.fetchUserRestaurants}
           handleSearch={this.handleSearchByName}
           currentUser={this.props.currentUser}
+          fetchData={this.props.fetchData}
         />
         <Grid centered>
           <Grid.Row>
