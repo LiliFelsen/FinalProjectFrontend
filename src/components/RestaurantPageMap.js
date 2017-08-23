@@ -6,12 +6,14 @@ import RestaurantMapPoint from './RestaurantMapPoint'
 class RestaurantPageMap extends Component {
 
   render() {
-    console.log('RestaurantPageMap', this.props.restaurant);
+    let lat1 = parseFloat(this.props.restaurant.lat)
+    let lng1 = parseFloat(this.props.restaurant.lng)
+    console.log('RestaurantPageMap', this.props.restaurant, lat1, lng1);
     return(
       <Container style={{ width: '100%', height: '500px' }}>
         {this.props.restaurant ?
           <GoogleMapReact
-            center={{lat: this.props.restaurant.lat, lng: this.props.restaurant.lng}}
+            center={{lat: lat1, lng: lng1}}
             defaultZoom={15}
           >
               <RestaurantMapPoint
