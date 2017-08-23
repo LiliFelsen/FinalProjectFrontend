@@ -7,7 +7,15 @@ class FriendList extends Component {
   state = {
     usernameInput: '',
     addedFriend: '',
-    modalOpen: false
+    modalOpen: false,
+    shownUser: ''
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    let user = nextProps.allUsers.find(user => user.id === nextProps.shownUserId)
+    if (user) {
+      this.setState({ shownUser: user.username })
+    }
   }
 
   handleOpen = () => {
@@ -44,6 +52,7 @@ class FriendList extends Component {
 
 
   render() {
+    console.log('friendList', this.state.shownUser, this.props.allUsers);
     return (
       <div style={{ margin: '2em 0 0 0' }}>
         <Grid centered>
@@ -53,7 +62,10 @@ class FriendList extends Component {
                 <center>
                   <h3>Your friends:</h3>
                   {this.props.currentUser.id !== this.props.shownUserId ?
-                    <Button onClick={this.props.backToCurrentUser} className='button-colored-red' size='tiny'>Go back to your places.</Button>
+                    <Button onClick={this.props.backToCurrentUser} className='button-colored-red-white' size='small'>
+                      {this.state.shownUser}'s places. <br/>
+                      Go back to yours!
+                    </Button>
                   : null}
                 </center>
                 <br/>

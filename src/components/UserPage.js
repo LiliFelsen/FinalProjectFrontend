@@ -75,6 +75,7 @@ class UserPage extends Component {
             </Grid.Column>
             <Grid.Column width={3}>
               <FriendList currentUser={this.props.currentUser}
+                shownUser={this.props.shownUser}
                 shownUserId={this.props.shownUserId}
                 allUsers={this.props.allUsers}
                 fetchCurrentUser={this.props.fetchCurrentUser}

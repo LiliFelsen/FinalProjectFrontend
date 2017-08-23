@@ -31,6 +31,7 @@ class UserBrowser extends Component {
 
           this.setState({
             allUsers: users,
+            shownUser: shownUser,
             shownUserId: shownUser.id,
             userRestaurants: shownUser.user_restaurants,
             doneRestaurants: doneRestaurants[0],
@@ -77,6 +78,7 @@ class UserBrowser extends Component {
           <UserPage allUsers={this.state.allUsers}
                     currentUser={this.state.currentUser}
                     shownUserId={this.state.shownUserId}
+                    shownUser={this.state.shownUser}
                     fetchCurrentUser={this.fetchCurrentUser}
                     fetchUserRestaurants={this.fetchUserRestaurants}
                     changeShownUser={this.changeShownUser}
