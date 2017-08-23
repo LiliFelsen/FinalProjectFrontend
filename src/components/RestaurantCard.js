@@ -4,7 +4,13 @@ import { Card, Button } from 'semantic-ui-react'
 
 const RestaurantCard = (props) => {
 
-  let restVisitStatus = props.restaurant.user_restaurants.find(rest => rest.user_id === props.shownUserId)
+  let UserRest = props.restaurant.user_restaurants.find(rest => rest.user_id === props.shownUserId)
+
+  if (UserRest) {
+    var visitStatus = UserRest.visited
+  } else {
+    null
+  }
 
   return (
     <Card key={props.restaurant.id}>
@@ -18,7 +24,7 @@ const RestaurantCard = (props) => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        {restVisitStatus.visited ?
+        {visitStatus ?
           <Button color='red' className='button-colored-red' size='mini' disabled>Visited</Button> :
           <Button color='teal' className='button-colored-teal' size='mini' disabled>Wishlist</Button>}
       </Card.Content>
