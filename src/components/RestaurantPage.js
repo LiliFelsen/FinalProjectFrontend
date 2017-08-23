@@ -8,34 +8,10 @@ class RestaurantPage extends Component {
     modalOpen: false,
     currentRestaurant: '',
     currentUserRestaurant: '',
-    visited: '',
+    visited: false,
     restaurantReviews: [],
     review: '',
     rating: 0
-  }
-
-  // fetchUserRestaurantInfo = (currentRestaurant) => {
-  //   fetch(process.env.REACT_APP_API + '/user_restaurants')
-  //     .then(resp => resp.json())
-  //     .then(userRestaurants => {
-  //       let currentUserRestaurant = userRestaurants.filter(ur =>
-  //       ur.user_id === this.props.shownUserId && ur.restaurant_id === currentRestaurant.id)[0]
-  //       this.setState({
-  //         currentUserRestaurant: currentUserRestaurant
-  //       })
-  //     })
-  //     .then(() => this.setState({ visited: this.state.currentUserRestaurant.visited }))
-  // }
-  //
-  fetchReviews = (currentRestaurant) => {
-    fetch(process.env.REACT_APP_API + '/reviews')
-      .then(resp => resp.json())
-      .then(reviews => {
-        let restaurantReviews = reviews.filter(r => r.restaurant_id === currentRestaurant.id)
-        this.setState({
-          restaurantReviews: restaurantReviews
-        })
-      })
   }
 
   fetchData = () => {
@@ -48,14 +24,11 @@ class RestaurantPage extends Component {
           this.setState({
             currentRestaurant: currentRestaurant,
             currentUserRestaurant: currentUserRestaurant,
-            visited: currentUserRestaurant.visited
+            visited: currentUserRestaurant.visited,
+            restaurantReviews: currentRestaurant.reviews
           })
         }
-        this.fetchReviews(currentRestaurant)
-        // this.fetchUserRestaurantInfo(currentRestaurant)
       })
-      // .then(() => this.fetchReviews())
-      // .then(() => this.fetchUserRestaurantInfo())
   }
 
   handleOpen = (e) => this.setState({
@@ -83,7 +56,7 @@ class RestaurantPage extends Component {
         notes: this.state.review
       })
     })
-    .then(() => this.fetchReviews(this.state.currentRestaurant))
+    .then(() => this.fetchData())
     .then(() => this.setState({ rating: 0 }))
   }
 
@@ -106,12 +79,12 @@ class RestaurantPage extends Component {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'}
     })
-    .then(() => this.fetchReviews(this.state.currentRestaurant))
+    .then(() => this.fetchData())
   }
 
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
         {this.props.currentUser.id !== this.props.shownUserId ?
           <RestaurantPageFriend shownUserId={this.props.shownUserId}

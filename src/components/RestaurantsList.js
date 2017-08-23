@@ -3,14 +3,14 @@ import { Card, Container } from 'semantic-ui-react'
 import RestaurantCard from './RestaurantCard'
 
 const RestaurantsList = ({ restaurantsDetails, shownUserId }) => {
-  // console.log('from restaurantsList', restaurantsDetails, shownUserId);
-  return(
+
+  return (
     <Container className='restaurants-list' fluid>
-    <Card.Group>
-      {restaurantsDetails.map(rest =>
-        <RestaurantCard key={rest.id} restaurant={rest} shownUserId={shownUserId}/>
-      )}
-    </Card.Group>
+      <Card.Group>
+        {restaurantsDetails.map(rest =>
+          <RestaurantCard key={rest.id} restaurant={rest} shownUserId={shownUserId}/>
+        )}
+      </Card.Group>
     </Container>
   )
 }

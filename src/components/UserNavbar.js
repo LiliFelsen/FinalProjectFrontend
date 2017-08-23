@@ -5,12 +5,13 @@ import FilterShow from './FilterShow'
 
 const UserNavbar = (props) => {
 
-  return(
+  return (
     <Grid style={{ margin: '0 2em 0 0' }}>
       <Grid.Row columns={3}>
         <Grid.Column width={6} textAlign='right' >
           <AddressSearchAndCreate fetchData={props.fetchData}
-            currentUserId={props.currentUser.id}/>
+            currentUserId={props.currentUser.id}
+            shownUserId={props.shownUserId} />
         </Grid.Column>
         <Grid.Column width={4} textAlign='center' >
           <FilterShow handleShow={props.handleShow} />

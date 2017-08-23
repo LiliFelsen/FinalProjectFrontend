@@ -19,12 +19,12 @@ class SignUpPage extends Component {
     this.setState({ username: '', password: '', email: '' })
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div id='login-sign-up'>
         <Grid centered style={{ margin: '12em 0' }}>
           <Grid.Column computer={6} largeScreen={5} >
-            <Card fluid textAlign='center' className='card-opacity'>
+            <Card fluid className='card-opacity'>
               <Card.Content>
                 <br/>
                 <center>

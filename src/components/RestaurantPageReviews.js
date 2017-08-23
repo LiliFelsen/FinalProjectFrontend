@@ -6,7 +6,7 @@ const RestaurantPageReviews = ({ review, deleteReview, currentUser }) => {
 
   const timeAgo = moment(review.created_at).fromNow()
 
-  return(
+  return (
     <Feed.Event>
       <Feed.Label><Icon name='comment' color='black'/></Feed.Label>
       <Feed.Content>

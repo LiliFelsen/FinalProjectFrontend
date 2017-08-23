@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const NavBar = ({ username }) => {
 
-  return(
+  return (
     <Menu inverted>
       <Menu.Item>
         <i style={{ color: '#14DBD9' }}>Hi, {username}!</i>

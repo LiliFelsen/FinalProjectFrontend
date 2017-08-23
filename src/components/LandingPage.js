@@ -4,8 +4,8 @@ import { Button, Grid, Card } from 'semantic-ui-react'
 
 class LandingPage extends Component {
 
-  render(){
-    return(
+  render() {
+    return (
       <div id='landing-page'>
         <Grid centered style={{ margin: '15em 0' }}>
           <Grid.Column computer={6} largeScreen={5} >

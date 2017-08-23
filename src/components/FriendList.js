@@ -39,12 +39,12 @@ class FriendList extends Component {
         friend_id: this.state.addedFriend.id
       })
     })
-      .then(() => this.props.fetchUsers(this.props.currentUser))
+      .then(() => this.props.fetchCurrentUser(this.props.currentUser))
   }
 
 
-  render(){
-    return(
+  render() {
+    return (
       <div style={{ margin: '2em 0 0 0' }}>
         <Grid centered>
           <Grid.Column>
@@ -68,7 +68,7 @@ class FriendList extends Component {
                   : null}
                   <br/>
                   <center>
-                  <Input id='friend-username' placeholder='Add friend by username' onChange={this.handleChange}/>
+                  <Input fluid id='friend-username' placeholder='Add friend by username' onChange={this.handleChange}/>
                   <AddFriendModal handleFriend={this.handleFriend}
                     modalOpen={this.state.modalOpen}
                     handleClose={this.handleClose}

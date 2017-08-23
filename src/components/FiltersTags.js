@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Button, Input, Grid, Card } from 'semantic-ui-react'
 
 class FiltersTags extends Component {
-  render(){
-    return(
+  render() {
+    return (
       <div style={{ margin: '2em 0' }}>
         <Grid centered>
           <Grid.Column textAlign='center'>

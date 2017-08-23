@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Grid, Button } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import NavBar from './NavBar'
 import UserNavbar from './UserNavbar'
 import UserRestaurants from './UserRestaurants'
 import FiltersTags from './FiltersTags'
 import FriendList from './FriendList'
-import AuthAdapter from '../Auth/authAdapter'
 
 class UserPage extends Component {
 
@@ -39,8 +38,8 @@ class UserPage extends Component {
     this.setState({ show: event.target.value })
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div id='user-page'>
         <NavBar username={this.props.currentUser.username} />
         <UserNavbar
@@ -49,6 +48,7 @@ class UserPage extends Component {
           handleSearch={this.handleSearchByName}
           currentUser={this.props.currentUser}
           fetchData={this.props.fetchData}
+          shownUserId={this.props.shownUserId}
         />
         <Grid centered>
           <Grid.Row>
@@ -77,7 +77,7 @@ class UserPage extends Component {
               <FriendList currentUser={this.props.currentUser}
                 shownUserId={this.props.shownUserId}
                 allUsers={this.props.allUsers}
-                fetchUsers={this.props.fetchUsers}
+                fetchCurrentUser={this.props.fetchCurrentUser}
                 changeShownUser={this.props.changeShownUser}
                 backToCurrentUser={this.props.backToCurrentUser} />
             </Grid.Column>
