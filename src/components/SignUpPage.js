@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Grid, Card } from 'semantic-ui-react'
+import { Button, Form, Grid, Card, Message } from 'semantic-ui-react'
 
 class SignUpPage extends Component {
 
@@ -26,6 +26,12 @@ class SignUpPage extends Component {
           <Grid.Column computer={6} largeScreen={5} >
             <Card fluid className='card-opacity'>
               <Card.Content>
+                {this.props.errors.length > 0 ?
+                  <Message negative>
+                    <Message.Header>We're sorry something went wrong:</Message.Header>
+                      <p>{this.props.errors}</p>
+                    </Message>
+                  : null}
                 <br/>
                 <center>
                   <h2 style={{ color: '#EF4343' }}>Welcome!</h2>

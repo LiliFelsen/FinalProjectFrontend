@@ -39,7 +39,9 @@ class RestaurantPage extends Component {
           <Grid.Row centered columns={1}>
             <Grid.Column verticalAlign='middle' width={8}>
               <Feed className='card-opacity'>
-                {this.props.restaurantReviews.reverse().map(r =>
+                {this.props.restaurantReviews.filter(review =>
+                  this.props.currentUser.friends.map(f =>
+                    f.id === review.user_id)).reverse().map(r =>
                   <RestaurantPageReviews key={r.id}
                     review={r}
                     deleteReview={this.props.deleteReview}

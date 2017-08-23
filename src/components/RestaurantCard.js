@@ -9,7 +9,7 @@ const RestaurantCard = (props) => {
   if (UserRest) {
     var visitStatus = UserRest.visited
   } else {
-    null
+    return null
   }
 
   return (

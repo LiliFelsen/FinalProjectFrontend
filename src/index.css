@@ -9,6 +9,15 @@ body {
 .title {
   font-family: 'Rock Salt', cursive;
   font-size: xx-large;
+  color: #E94418;
+}
+
+.logo {
+  font-family: 'Rock Salt', cursive;
+  font-size: large;
+  color: #E94418!important;
+  text-align: center!important;
+  margin-right: 7em;
 }
 
 .button-colored-teal {

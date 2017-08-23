@@ -16,14 +16,15 @@ class App extends Component {
     auth: {
       isLoggedIn: false,
       user: ''
-    }
+    },
+    errors: []
   }
 
   onLogin = (loginParams) => {
     AuthAdapter.login(loginParams)
       .then(resp => {
         if(resp.error){
-          console.log("error, do nothing", resp.error)
+          this.setState({ errors: resp.error })
         } else {
           localStorage.setItem('jwt', resp.jwt)
           this.setState({
@@ -40,7 +41,7 @@ class App extends Component {
     AuthAdapter.signUp(signUpParams)
       .then(resp => {
         if(resp.error){
-          console.log("error, do nothing", resp.error)
+          this.setState({ errors: resp.error })
         } else {
           localStorage.setItem('jwt', resp.jwt)
           this.setState({
@@ -73,11 +74,11 @@ class App extends Component {
 
           <Route path="/signup" render={()=> this.state.auth.isLoggedIn ?
             <Redirect to="/my_places"/> :
-            <SignUpPage onSendSignUp={this.onSignUp} />} />
+            <SignUpPage onSendSignUp={this.onSignUp} errors={this.state.errors} />} />
 
           <Route path="/login" render={()=> this.state.auth.isLoggedIn ?
             <Redirect to="/my_places"/> :
-            <LoginPage onSendLogin={this.onLogin} />} />
+            <LoginPage onSendLogin={this.onLogin} errors={this.state.errors} />} />
 
           <Route path="/logout" render={()=> (
             <LogoutHandler logout={this.handleLogout} />

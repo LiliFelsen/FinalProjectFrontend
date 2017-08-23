@@ -13,7 +13,7 @@ class LandingPage extends Component {
               <Card.Content>
                 <br/><br/><br/><br/>
                 <center>
-                 <div className='title' style={{ color: '#E94418' }}>All My Places</div>
+                 <div className='title'>All My Places</div>
                    <br/><br/><br/>
                  <h3><i>Bookmark the places you love<br/> and want to try!</i></h3>
                  <br/><br/>
