@@ -8,7 +8,7 @@ class RestaurantPageMap extends Component {
   render() {
     let lat1 = parseFloat(this.props.restaurant.lat)
     let lng1 = parseFloat(this.props.restaurant.lng)
-    console.log('RestaurantPageMap', this.props.restaurant, lat1, lng1);
+    
     return(
       <Container style={{ width: '100%', height: '500px' }}>
         {this.props.restaurant ?
