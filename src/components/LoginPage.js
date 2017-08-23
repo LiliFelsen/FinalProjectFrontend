@@ -18,8 +18,8 @@ class LoginPage extends Component {
     this.setState({ username: '', password: '' })
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div id='login-sign-up'>
         <Grid centered style={{ margin: '12em 0' }}>
           <Grid.Column computer={6} largeScreen={5} >

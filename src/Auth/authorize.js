@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export default function (Component, inheritedProps) {
+export default function (PassedComponent, inheritedProps) {
   class Authentication extends Component {
     static contextTypes = {
       router: PropTypes.object
@@ -20,7 +20,7 @@ export default function (Component, inheritedProps) {
     }
 
     render(){
-      return <Component {...this.props} />
+      return <PassedComponent {...this.props} />
     }
 
   }

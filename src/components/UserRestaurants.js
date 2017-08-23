@@ -4,49 +4,47 @@ import RestaurantsList from './RestaurantsList'
 
 const UserRestaurants = (props) => {
 
-  let filterByName = () => {
+  const filterByName = () => {
     return props.restaurantsDetails.filter(rest =>
-      rest.name.toLowerCase().includes(props.searchTerm.toLowerCase()) )
-    }
+      rest.name.toLowerCase().includes(props.searchTerm.toLowerCase())
+  )}
 
-  let filterByTag = (arrayToFilter) => {
-      return arrayToFilter.filter(rest => {
-        for(let i=0; i< rest.tags.length; i++){
-          if(rest.tags[i].name.includes(props.tagSearch)){
-            return rest
-          }
-        }
-      })
-    }
-    let filteredRestaurants = []
-
-    if (props.searchTerm) {
-      filteredRestaurants = filterByName()
-    } else if (props.show === 'done' && props.tagSearch) {
-      filteredRestaurants = filterByTag(props.doneDetails)
-    } else if (props.show === 'wishlist' && props.tagSearch) {
-      filteredRestaurants = filterByTag(props.wishlistDetails)
-    } else if (props.tagSearch) {
-      filteredRestaurants = filterByTag(props.restaurantsDetails)
-    } else if (props.show === 'done') {
-      filteredRestaurants = props.doneDetails
-    } else if (props.show === 'wishlist') {
-      filteredRestaurants = props.wishlistDetails
-    } else {
-      filteredRestaurants = props.restaurantsDetails
-      console.log('inside else:', props.restaurantsDetails);
-    }
-
-    console.log(filteredRestaurants)
-    return(
-      <div>
-        {props.mapVisible ?
-          <RestaurantsMap restaurantsDetails={filteredRestaurants} /> :
-          <RestaurantsList restaurantsDetails={filteredRestaurants} />
-        }
-      </div>
-    )
+  const filterByTag = (arrayToFilter) => {
+    return arrayToFilter.filter(rest => {
+      for (let idx = 0; idx < rest.tags.length; idx++) {
+        if (rest.tags[idx].name.includes(props.tagSearch))
+          return rest
+      }
+      return undefined
+    })
   }
+
+  const getFilteredRestaurants = () => {
+    switch (true) {
+      case (props.searchTerm.length > 0):
+        return filterByName()
+      case (props.tagSearch.length > 0):
+        return filterByTag(props.restaurantsDetails)
+      case (props.show === 'done'):
+        return (props.tagSearch) ? filterByTag(props.doneDetails) : props.doneDetails
+      case (props.show === 'wishlist'):
+        return (props.tagSearch) ? filterByTag(props.wishlistDetails) : props.wishlistDetails
+      default:
+        return props.restaurantsDetails
+    }
+  }
+
+  const filteredRestaurants = getFilteredRestaurants()
+
+  return (
+    <div>
+      {props.mapVisible ?
+        <RestaurantsMap restaurantsDetails={filteredRestaurants} /> :
+        <RestaurantsList restaurantsDetails={filteredRestaurants} shownUserId={props.shownUserId}/>
+      }
+    </div>
+  )
+}
 
 
 export default UserRestaurants

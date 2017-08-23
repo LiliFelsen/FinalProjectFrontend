@@ -3,7 +3,7 @@ import { Button, Modal, Icon, Grid, Header } from 'semantic-ui-react'
 
 const AddFriendModal = (props) => {
 
-  return(
+  return (
     <Modal
       trigger={<Button color='grey' onClick={props.handleFriend} icon='add user' />}
       open={props.modalOpen}

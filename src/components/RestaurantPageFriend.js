@@ -11,8 +11,8 @@ class RestaurantPage extends Component {
     this.props.fetchData()
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div id='restaurant-page'>
         <NavBar username={this.props.currentUser.username} />
         <Grid container divided='vertically' className='restaurant-page'>

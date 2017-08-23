@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from 'semantic-ui-react'
 
 const RestaurantDetailledCard = ({ restaurant }) => {
-  return(
+  return (
     <Card fluid>
       <Card.Content>
         <Card.Header style={{ color: '#14DBD9'}}>

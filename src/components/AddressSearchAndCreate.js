@@ -33,8 +33,9 @@ class AddressSearchAndCreate extends Component {
     fetch(process.env.REACT_APP_API + '/restaurants')
       .then(resp => resp.json())
       .then(restaurants => {
+        let currentRestaurant = restaurants.find(r => r.placeId === this.state.currentPlaceId)
         this.setState({
-          currentRestaurant: restaurants.filter(r => r.placeId === this.state.currentPlaceId)[0]
+          currentRestaurant: currentRestaurant
         })
       }
     )
@@ -92,7 +93,7 @@ class AddressSearchAndCreate extends Component {
         visited: this.state.visited
       })
     })
-      .then(() => this.props.fetchRestaurants())
+      .then(() => this.props.fetchData(this.props.shownUserId))
   }
 
   createRestaurantTags = () => {
@@ -111,19 +112,22 @@ class AddressSearchAndCreate extends Component {
   }
 
   createRestaurantTagsForNewTags = () => {
-  let tagsToAddToRest = this.state.newTags.map(tag =>
+    let tagsToAddToRest = this.state.newTags.map(tag =>
       this.state.existingTags.filter(e => e.name === tag)[0].id
     )
-    tagsToAddToRest.map(tagId =>
-      fetch(process.env.REACT_APP_API + '/restaurant_tags', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          restaurant_id: this.state.currentRestaurant.id,
-          tag_id: tagId
+    if (tagsToAddToRest.length > 0) {
+      tagsToAddToRest.map(tagId => (
+        fetch(process.env.REACT_APP_API + '/restaurant_tags', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            restaurant_id: this.state.currentRestaurant.id,
+            tag_id: tagId
+          })
         })
-      })
-    )
+        .then(() => this.setState({ currentRestaurant: {} }))
+      ))
+    }
   }
 
   createTagsThenRestaurantTags = () => {
@@ -136,8 +140,14 @@ class AddressSearchAndCreate extends Component {
         })
         .then(() => fetch(process.env.REACT_APP_API + '/tags')
           .then(resp => resp.json())
-          .then(existingTags => this.setState({ existingTags }))
-          .then(() => this.createRestaurantTagsForNewTags())
+          .then(existingTags => {
+            this.setState({ existingTags },
+            () => {
+              console.log('inside .then', this.state.currentRestaurant);
+              this.createRestaurantTagsForNewTags()
+            })
+
+          })
         )
       )
     }
@@ -148,16 +158,15 @@ class AddressSearchAndCreate extends Component {
     this.createUserRestaurant()
     this.createRestaurantTags()
     this.createTagsThenRestaurantTags()
-    this.setState({ currentRestaurant: {} })
     document.getElementById('autocomplete').value = ""
   }
 
-  render(){
+  render() {
     const tagOptions = this.state.existingTags.map(tag => {
       return {key: tag.id, text: tag.name, value: tag.id}
     })
 
-    return(
+    return (
       <div>
           <Input>
             <Autocomplete
@@ -188,7 +197,7 @@ class AddressSearchAndCreate extends Component {
                         <Dropdown placeholder='Tags' fluid multiple selection options={tagOptions} onChange={this.handleSelectTag} />
                         <br/>
                         <p>and/or create new ones:</p>
-                        <ul>{this.state.newTags.map(tag => <li key={tag.id}>{tag}</li>)}</ul>
+                        <ul>{this.state.newTags.map(tag => <li>{tag}</li>)}</ul>
                         <Form onSubmit={this.handleNewTag}>
                           <Form.Field id='tag' placeholder='New tag name' control={Input} onChange={this.handleTagInput} />
                           <Button type='submit'><Icon name='plus' /></Button>

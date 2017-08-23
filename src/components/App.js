@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import LandingPage from './LandingPage'
+import LogoutHandler from './LogoutHandler'
 import LoginPage from './LoginPage'
 import SignUpPage from './SignUpPage'
 import UserBrowser from './UserBrowser'
@@ -78,9 +79,9 @@ class App extends Component {
             <Redirect to="/my_places"/> :
             <LoginPage onSendLogin={this.onLogin} />} />
 
-          <Route path="/logout" render={()=> {
-            this.handleLogout()
-            return (<Redirect to="/" />)}} />
+          <Route path="/logout" render={()=> (
+            <LogoutHandler logout={this.handleLogout} />
+          )} />
 
           <Route path="/my_places" component={Auth(UserBrowser)} />
         </div>

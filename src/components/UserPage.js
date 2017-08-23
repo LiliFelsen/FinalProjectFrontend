@@ -5,7 +5,6 @@ import UserNavbar from './UserNavbar'
 import UserRestaurants from './UserRestaurants'
 import FiltersTags from './FiltersTags'
 import FriendList from './FriendList'
-import AuthAdapter from '../Auth/authAdapter'
 
 class UserPage extends Component {
 
@@ -13,11 +12,12 @@ class UserPage extends Component {
     mapVisible: true,
     searchTerm: '',
     tagSearch: '',
-    show: ''
+    show: '',
+    shownUser: []
   }
 
   componentDidMount = () => {
-    this.props.fetchUserRestaurants()
+    this.props.fetchData(this.props.shownUserId)
   }
 
   handleShow = () => {
@@ -38,8 +38,8 @@ class UserPage extends Component {
     this.setState({ show: event.target.value })
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div id='user-page'>
         <NavBar username={this.props.currentUser.username} />
         <UserNavbar
@@ -47,8 +47,14 @@ class UserPage extends Component {
           fetchRestaurants={this.props.fetchUserRestaurants}
           handleSearch={this.handleSearchByName}
           currentUser={this.props.currentUser}
+          fetchData={this.props.fetchData}
+          shownUserId={this.props.shownUserId}
         />
         <Grid centered>
+          <Grid.Row>
+            <Grid.Column>
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Row>
             <Grid.Column width={3}>
               <FiltersTags
@@ -64,13 +70,14 @@ class UserPage extends Component {
                 searchTerm={this.state.searchTerm}
                 tagSearch={this.state.tagSearch}
                 show={this.state.show}
+                shownUserId={this.props.shownUserId}
               />
             </Grid.Column>
             <Grid.Column width={3}>
               <FriendList currentUser={this.props.currentUser}
                 shownUserId={this.props.shownUserId}
                 allUsers={this.props.allUsers}
-                fetchUsers={this.props.fetchUsers}
+                fetchCurrentUser={this.props.fetchCurrentUser}
                 changeShownUser={this.props.changeShownUser}
                 backToCurrentUser={this.props.backToCurrentUser} />
             </Grid.Column>

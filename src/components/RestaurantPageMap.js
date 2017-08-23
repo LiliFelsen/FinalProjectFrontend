@@ -5,7 +5,7 @@ import RestaurantMapPoint from './RestaurantMapPoint'
 
 class RestaurantPageMap extends Component {
 
-  render(){
+  render() {
     return(
       <Container style={{ width: '100%', height: '500px' }}>
         <GoogleMapReact
