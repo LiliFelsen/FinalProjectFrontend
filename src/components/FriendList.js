@@ -24,9 +24,8 @@ class FriendList extends Component {
 
   handleFriend = (event) => {
     this.handleOpen()
-    this.setState({ addedFriend: this.props.allUsers.filter(
-      user => user.username.toLowerCase() === this.state.usernameInput.toLowerCase())[0]
-    })
+    let addedFriend = this.props.allUsers.filter(user => user.username.toLowerCase() === this.state.usernameInput.toLowerCase())[0]
+    this.setState({ addedFriend: addedFriend })
   }
 
   createFriendship = () => {
@@ -60,9 +59,9 @@ class FriendList extends Component {
                 <br/>
                   {this.props.currentUser ?
                     this.props.currentUser.friends.map(friend =>
-                      <p>
+                      <p key={friend.id}>
                         <Icon name='user circle' size='big' color='teal' />
-                        <span id={friend.id} key={friend.id} className='friend' onClick={this.props.changeShownUser}>
+                        <span id={friend.id} className='friend' onClick={this.props.changeShownUser}>
                           {friend.username}
                         </span>
                       </p>)

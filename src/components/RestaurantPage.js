@@ -14,34 +14,49 @@ class RestaurantPage extends Component {
     rating: 0
   }
 
-  fetchUserRestaurantInfo = () => {
-    fetch(process.env.REACT_APP_API + '/user_restaurants')
-      .then(resp => resp.json())
-      .then(userRestaurants => {
-        let currentUserRestaurant = userRestaurants.filter(ur =>
-        ur.user_id === this.props.shownUserId && ur.restaurant_id === this.state.currentRestaurant.id)[0]
-        this.setState({
-          currentUserRestaurant: currentUserRestaurant
-        })
-      })
-      .then(() => this.setState({ visited: this.state.currentUserRestaurant.visited }))
-  }
-
-  fetchReviews = () => {
+  // fetchUserRestaurantInfo = (currentRestaurant) => {
+  //   fetch(process.env.REACT_APP_API + '/user_restaurants')
+  //     .then(resp => resp.json())
+  //     .then(userRestaurants => {
+  //       let currentUserRestaurant = userRestaurants.filter(ur =>
+  //       ur.user_id === this.props.shownUserId && ur.restaurant_id === currentRestaurant.id)[0]
+  //       this.setState({
+  //         currentUserRestaurant: currentUserRestaurant
+  //       })
+  //     })
+  //     .then(() => this.setState({ visited: this.state.currentUserRestaurant.visited }))
+  // }
+  //
+  fetchReviews = (currentRestaurant) => {
     fetch(process.env.REACT_APP_API + '/reviews')
       .then(resp => resp.json())
-      .then(reviews => this.setState({
-        restaurantReviews: reviews.filter(r => r.restaurant_id === this.state.currentRestaurant.id)
-      }))
+      .then(reviews => {
+        let restaurantReviews = reviews.filter(r => r.restaurant_id === currentRestaurant.id)
+        this.setState({
+          restaurantReviews: restaurantReviews
+        })
+      })
   }
 
   fetchData = () => {
     const id = this.props.match.params.id
     fetch(process.env.REACT_APP_API + `/restaurants/${id}`)
       .then(resp => resp.json())
-      .then(currentRestaurant => this.setState({ currentRestaurant }))
-      .then(() => this.fetchReviews())
-      .then(() => this.fetchUserRestaurantInfo())
+      .then(currentRestaurant => {
+        console.log('from fetchData', currentRestaurant)
+        let currentUserRestaurant = currentRestaurant.user_restaurants.filter(rest => rest.user_id === this.props.shownUserId)[0]
+        if (currentUserRestaurant) {
+          this.setState({
+            currentRestaurant: currentRestaurant,
+            currentUserRestaurant: currentUserRestaurant,
+            visited: currentUserRestaurant.visited
+          })
+        }
+        this.fetchReviews(currentRestaurant)
+        // this.fetchUserRestaurantInfo(currentRestaurant)
+      })
+      // .then(() => this.fetchReviews())
+      // .then(() => this.fetchUserRestaurantInfo())
   }
 
   handleOpen = (e) => this.setState({
@@ -69,7 +84,7 @@ class RestaurantPage extends Component {
         notes: this.state.review
       })
     })
-    .then(() => this.fetchReviews())
+    .then(() => this.fetchReviews(this.state.currentRestaurant))
     .then(() => this.setState({ rating: 0 }))
   }
 
@@ -92,7 +107,7 @@ class RestaurantPage extends Component {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'}
     })
-    .then(() => this.fetchReviews())
+    .then(() => this.fetchReviews(this.state.currentRestaurant))
   }
 
 

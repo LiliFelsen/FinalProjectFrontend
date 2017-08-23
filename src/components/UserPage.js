@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Button } from 'semantic-ui-react'
 import NavBar from './NavBar'
 import UserNavbar from './UserNavbar'
 import UserRestaurants from './UserRestaurants'
@@ -13,11 +13,12 @@ class UserPage extends Component {
     mapVisible: true,
     searchTerm: '',
     tagSearch: '',
-    show: ''
+    show: '',
+    shownUser: []
   }
 
   componentDidMount = () => {
-    this.props.fetchUserRestaurants()
+    this.props.fetchData(this.props.shownUserId)
   }
 
   handleShow = () => {
@@ -49,6 +50,10 @@ class UserPage extends Component {
           currentUser={this.props.currentUser}
         />
         <Grid centered>
+          <Grid.Row>
+            <Grid.Column>
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Row>
             <Grid.Column width={3}>
               <FiltersTags

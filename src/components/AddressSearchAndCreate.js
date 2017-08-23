@@ -33,8 +33,9 @@ class AddressSearchAndCreate extends Component {
     fetch(process.env.REACT_APP_API + '/restaurants')
       .then(resp => resp.json())
       .then(restaurants => {
+        let currentRestaurant = restaurants.filter(r => r.placeId === this.state.currentPlaceId)[0]
         this.setState({
-          currentRestaurant: restaurants.filter(r => r.placeId === this.state.currentPlaceId)[0]
+          currentRestaurant: currentRestaurant
         })
       }
     )
