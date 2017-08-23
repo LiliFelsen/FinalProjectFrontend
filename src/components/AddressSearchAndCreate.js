@@ -143,7 +143,6 @@ class AddressSearchAndCreate extends Component {
           .then(existingTags => {
             this.setState({ existingTags },
             () => {
-              console.log('inside .then', this.state.currentRestaurant);
               this.createRestaurantTagsForNewTags()
             })
 
