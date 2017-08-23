@@ -43,7 +43,6 @@ class RestaurantPage extends Component {
     fetch(process.env.REACT_APP_API + `/restaurants/${id}`)
       .then(resp => resp.json())
       .then(currentRestaurant => {
-        console.log('from fetchData', currentRestaurant)
         let currentUserRestaurant = currentRestaurant.user_restaurants.filter(rest => rest.user_id === this.props.shownUserId)[0]
         if (currentUserRestaurant) {
           this.setState({

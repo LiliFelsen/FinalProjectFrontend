@@ -34,15 +34,14 @@ const UserRestaurants = (props) => {
       filteredRestaurants = props.wishlistDetails
     } else {
       filteredRestaurants = props.restaurantsDetails
-      // console.log('inside else:', props.restaurantsDetails);
     }
 
-    // console.log(filteredRestaurants)
+    // console.log('from userRestaurants', props.shownUserId)
     return(
       <div>
         {props.mapVisible ?
           <RestaurantsMap restaurantsDetails={filteredRestaurants} /> :
-          <RestaurantsList restaurantsDetails={filteredRestaurants} />
+          <RestaurantsList restaurantsDetails={filteredRestaurants} shownUserId={props.shownUserId}/>
         }
       </div>
     )

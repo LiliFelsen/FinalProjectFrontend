@@ -69,6 +69,7 @@ class UserPage extends Component {
                 searchTerm={this.state.searchTerm}
                 tagSearch={this.state.tagSearch}
                 show={this.state.show}
+                shownUserId={this.props.shownUserId}
               />
             </Grid.Column>
             <Grid.Column width={3}>
