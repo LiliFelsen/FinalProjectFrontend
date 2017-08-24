@@ -1,4 +1,4 @@
-## ALL MY PLACES
+# ALL MY PLACES
 
 ## User Story
 As a user, I can:
