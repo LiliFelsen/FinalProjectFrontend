@@ -112,6 +112,7 @@ class AddressSearchAndCreate extends Component {
             tag_id: tagId
           })
         })
+        .then(() => this.setState({ selectedTagsId: [] }))
       )
     }
   }
@@ -130,7 +131,7 @@ class AddressSearchAndCreate extends Component {
             tag_id: tagId
           })
         })
-        .then(() => this.setState({ currentRestaurant: {} }))
+        .then(() => this.setState({ currentRestaurant: {}, newTags: [] }))
       ))
     }
   }
@@ -166,8 +167,13 @@ class AddressSearchAndCreate extends Component {
   }
 
   render() {
-    const tagOptions = this.state.existingTags.map(tag => {
+    let tagOptions = this.state.existingTags.map(tag => {
       return {key: tag.id, text: tag.name, value: tag.id}
+    }).sort(function(a, b){
+      if (a.text < b.text)
+        return -1
+      if (a.text > b.text)
+      return 1
     })
 
     const loader = (
