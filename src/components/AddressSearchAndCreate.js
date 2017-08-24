@@ -95,7 +95,10 @@ class AddressSearchAndCreate extends Component {
         visited: this.state.visited
       })
     })
-      .then(() => this.props.fetchData(this.props.shownUserId))
+      .then(() => {
+        this.setState({ visited: false })
+        this.props.fetchData(this.props.shownUserId)
+      })
   }
 
   createRestaurantTags = () => {
@@ -191,7 +194,6 @@ class AddressSearchAndCreate extends Component {
             <Modal.Header>Add a restaurant to your list:</Modal.Header>
               <Modal.Description>
                 {this.state.loading ? loader :
-
                   <Grid style={{ margin: '0.5em 1em' }}>
                     <Grid.Row>
                       <Grid.Column>
@@ -215,7 +217,6 @@ class AddressSearchAndCreate extends Component {
                     </Grid.Row>
                   </Grid>
                 }
-                
               </Modal.Description>
             </Modal>
       </div>
