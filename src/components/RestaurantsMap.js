@@ -9,7 +9,7 @@ class RestaurantsMap extends Component {
     return (
       <Container className='restaurants-map' style={{ width: '100%' }}>
         <GoogleMapReact
-          center={{lat: 40.7527698, lng: -73.9849192}}
+          center={{lat:40.7308575, lng: -73.918498}}
           defaultZoom={12}
         >
           {this.props.restaurantsDetails.map(rest =>

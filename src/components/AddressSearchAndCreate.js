@@ -172,7 +172,7 @@ class AddressSearchAndCreate extends Component {
     }).sort(function(a, b){
       if (a.text < b.text)
         return -1
-      if (a.text > b.text)
+      if (a.text.toLowerCase() > b.text.toLowerCase())
       return 1
     })
 
