@@ -15,7 +15,8 @@ class UserBrowser extends Component {
     wishlistRestaurants: [],
     restaurantsDetails: [],
     doneDetails: [],
-    wishlistDetails: []
+    wishlistDetails: [],
+    loading: true
   }
 
   fetchData = (shownUserId) => {

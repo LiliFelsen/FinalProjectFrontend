@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Dimmer, Loader } from 'semantic-ui-react'
 import NavBar from './NavBar'
 import UserNavbar from './UserNavbar'
 import UserRestaurants from './UserRestaurants'
@@ -13,7 +13,14 @@ class UserPage extends Component {
     searchTerm: '',
     tagSearch: '',
     show: '',
-    shownUser: []
+    shownUser: [],
+    loading: true
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.shownUserId) {
+      this.setState({ loading: false })
+    }
   }
 
   componentDidMount = () => {
@@ -39,6 +46,12 @@ class UserPage extends Component {
   }
 
   render() {
+
+    const loader = (
+      <Dimmer active>
+        <Loader size='medium' content='Loading...'/>
+      </Dimmer>)
+
     return (
       <div id='user-page'>
         <NavBar username={this.props.currentUser.username} />
@@ -50,6 +63,7 @@ class UserPage extends Component {
           fetchData={this.props.fetchData}
           shownUserId={this.props.shownUserId}
         />
+        {this.state.loading ? loader :
         <Grid centered>
           <Grid.Row>
             <Grid.Column>
@@ -84,6 +98,7 @@ class UserPage extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        }
       </div>
     )
   }
