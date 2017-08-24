@@ -4,12 +4,12 @@ import { Container } from 'semantic-ui-react'
 import RestaurantMapPoint from './RestaurantMapPoint'
 
 class RestaurantsMap extends Component {
-  
+
   render() {
     return (
       <Container className='restaurants-map' style={{ width: '100%' }}>
         <GoogleMapReact
-          center={{lat: 40.7236346, lng: -73.9639765}}
+          center={{lat: 40.7527698, lng: -73.9849192}}
           defaultZoom={12}
         >
           {this.props.restaurantsDetails.map(rest =>

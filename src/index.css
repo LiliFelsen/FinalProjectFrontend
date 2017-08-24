@@ -36,7 +36,7 @@ body {
 .restaurants-list {
   position: absolute;
   top: 0; bottom: 0; left: 0; right: 0;
-  height: 120%;
+  height: 150%;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -44,7 +44,7 @@ body {
 .restaurants-map {
   position: absolute;
   top: 0; bottom: 0; left: 0; right: 0;
-  height: 120%;
+  height: 150%;
 }
 
 .restaurant-page {
