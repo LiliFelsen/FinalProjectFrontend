@@ -52,7 +52,6 @@ class FriendList extends Component {
 
 
   render() {
-    console.log('friendList', this.state.shownUser, this.props.allUsers);
     return (
       <div style={{ margin: '2em 0 0 0' }}>
         <Grid centered>

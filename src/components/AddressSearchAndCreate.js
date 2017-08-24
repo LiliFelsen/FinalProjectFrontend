@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Button, Modal, Icon, Dropdown, Form, Checkbox, Grid } from 'semantic-ui-react'
+import { Input, Button, Modal, Icon, Dropdown, Form, Checkbox, Grid, Dimmer, Loader } from 'semantic-ui-react'
 import Autocomplete from 'react-google-autocomplete'
 
 class AddressSearchAndCreate extends Component {
@@ -12,7 +12,8 @@ class AddressSearchAndCreate extends Component {
       newTags: [],
       currentTag: '',
       visited: false,
-      modalOpen: false
+      modalOpen: false,
+      loading: true
     }
 
   componentDidMount = () => {
@@ -35,7 +36,8 @@ class AddressSearchAndCreate extends Component {
       .then(restaurants => {
         let currentRestaurant = restaurants.find(r => r.placeId === this.state.currentPlaceId)
         this.setState({
-          currentRestaurant: currentRestaurant
+          currentRestaurant: currentRestaurant,
+          loading: false
         })
       }
     )
@@ -165,6 +167,11 @@ class AddressSearchAndCreate extends Component {
       return {key: tag.id, text: tag.name, value: tag.id}
     })
 
+    const loader = (
+      <Dimmer active inverted>
+        <Loader inverted size='medium' content='Loading...'/>
+      </Dimmer>)
+
     return (
       <div>
           <Input>
@@ -183,7 +190,8 @@ class AddressSearchAndCreate extends Component {
           >
             <Modal.Header>Add a restaurant to your list:</Modal.Header>
               <Modal.Description>
-                {this.state.currentRestaurant ?
+                {this.state.loading ? loader :
+
                   <Grid style={{ margin: '0.5em 1em' }}>
                     <Grid.Row>
                       <Grid.Column>
@@ -206,8 +214,8 @@ class AddressSearchAndCreate extends Component {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
-                  : null
                 }
+                
               </Modal.Description>
             </Modal>
       </div>
