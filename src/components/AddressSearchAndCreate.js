@@ -51,13 +51,13 @@ class AddressSearchAndCreate extends Component {
       address: place.formatted_address,
       phone_number: place.formatted_phone_number,
       website: place.website,
-      hours_monday: place.opening_hours.weekday_text[0],
-      hours_tuesday: place.opening_hours.weekday_text[1],
-      hours_wednesday: place.opening_hours.weekday_text[2],
-      hours_thursday: place.opening_hours.weekday_text[3],
-      hours_friday: place.opening_hours.weekday_text[4],
-      hours_saturday: place.opening_hours.weekday_text[5],
-      hours_sunday: place.opening_hours.weekday_text[6]
+      hours_monday: place.opening_hours ? place.opening_hours.weekday_text[0] : "Monday: Standard Hours",
+      hours_tuesday: place.opening_hours ? place.opening_hours.weekday_text[1] : "Tuesday: Standard Hours",
+      hours_wednesday: place.opening_hours ? place.opening_hours.weekday_text[2] : "Wednesday: Standard Hours",
+      hours_thursday: place.opening_hours ? place.opening_hours.weekday_text[3] : "Thursday: Standard Hours",
+      hours_friday: place.opening_hours ? place.opening_hours.weekday_text[4] : "Friday: Standard Hours",
+      hours_saturday: place.opening_hours ? place.opening_hours.weekday_text[5] : "Saturday: Standard Hours",
+      hours_sunday: place.opening_hours ? place.opening_hours.weekday_text[6] : "SUnday: Standard Hours"
     }
     fetch(process.env.REACT_APP_API + '/restaurants', {
       method: 'POST',
