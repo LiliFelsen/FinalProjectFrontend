@@ -13,7 +13,7 @@ const NavBar = ({ username }) => {
         <NavLink to='/my_places'>See all places</NavLink>
       </Menu.Item>
       <Menu.Item className='logo' position='right'>
-        All My Places    
+        All My Places
       </Menu.Item>
       <Menu.Item position='right'>
         <NavLink to="/logout">Logout</NavLink>

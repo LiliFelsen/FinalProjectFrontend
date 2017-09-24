@@ -18,6 +18,13 @@ class FriendList extends Component {
     }
   }
 
+  componentDidMount = () => {
+    let user = this.props.allUsers.find(user => user.id === this.props.shownUserId)
+    if (user) {
+      this.setState({ shownUser: user.username })
+    }
+  }
+
   handleOpen = () => {
     this.setState({ modalOpen: true })
   }
